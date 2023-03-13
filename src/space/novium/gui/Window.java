@@ -4,8 +4,10 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import space.novium.nebula.KeyInput;
 import space.novium.utils.math.Vector2i;
 
+import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -55,6 +57,7 @@ public class Window implements Runnable {
                 running = false;
             }
         }
+        glfwFreeCallbacks(window);
         glfwDestroyWindow(window);
         glfwTerminate();
     }
@@ -107,7 +110,7 @@ public class Window implements Runnable {
 
         glfwMakeContextCurrent(window);
 
-        //glfwSetKeyCallback(window, new KeyInput());
+        glfwSetKeyCallback(window, KeyInput::keyCallback);
 
         glfwShowWindow(window);
         GL.createCapabilities();
