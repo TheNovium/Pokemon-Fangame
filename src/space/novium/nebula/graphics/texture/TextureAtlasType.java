@@ -1,4 +1,4 @@
-package space.novium.gui.texture;
+package space.novium.nebula.graphics.texture;
 
 import static org.lwjgl.opengl.GL13.*;
 

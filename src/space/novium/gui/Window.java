@@ -4,8 +4,12 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import space.novium.level.IntroScene;
+import space.novium.level.Scene;
 import space.novium.nebula.KeyInput;
 import space.novium.utils.math.Vector2i;
+
+import java.util.function.Supplier;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
@@ -21,8 +25,14 @@ public class Window implements Runnable {
     private boolean running;
     private double goalFPS;
     private Vector2i windowSize;
+    private static Scene currentScene = new IntroScene();
 
     private Window(){}
+
+    public static void setScene(Supplier<Scene> newScene){
+        currentScene = newScene.get();
+        currentScene.init();
+    }
 
     public static Window get(){
         if(instance == null){
@@ -49,7 +59,7 @@ public class Window implements Runnable {
 
             while(step >= updateRate){
                 step -= updateRate;
-                update();
+                update((float)updateRate);
             }
             render();
             sync(prev);
@@ -75,9 +85,9 @@ public class Window implements Runnable {
         glfwSwapBuffers(window);
     }
 
-    private void update(){
+    private void update(float dt){
         glfwPollEvents();
-        //TODO update the game logic
+        currentScene.update(dt);
     }
 
     private void sync(double time){

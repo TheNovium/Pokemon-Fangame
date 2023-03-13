@@ -1,4 +1,4 @@
-package space.novium.nebula.resources;
+package space.novium.nebula.core.resources;
 
 import java.util.Collections;
 import java.util.IdentityHashMap;

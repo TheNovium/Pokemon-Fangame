@@ -1,6 +1,6 @@
-package space.novium.gui.texture;
+package space.novium.nebula.graphics.texture;
 
-import space.novium.nebula.resources.ResourceLocation;
+import space.novium.nebula.core.resources.ResourceLocation;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;

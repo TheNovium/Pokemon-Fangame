@@ -1,4 +1,4 @@
-package space.novium.nebula.resources;
+package space.novium.nebula.core.resources;
 
 import space.novium.Game;
 

@@ -1,6 +1,6 @@
-package space.novium.gui.texture;
+package space.novium.nebula.graphics.texture;
 
-import space.novium.nebula.resources.ResourceLocation;
+import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.utils.IOUtils;
 import space.novium.utils.math.Vector2i;
 import space.novium.utils.math.Vector4i;

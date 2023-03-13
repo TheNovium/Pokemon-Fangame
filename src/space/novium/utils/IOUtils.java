@@ -3,8 +3,8 @@ package space.novium.utils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
-import space.novium.gui.texture.TextureAtlas;
-import space.novium.nebula.resources.ResourceLocation;
+import space.novium.nebula.graphics.texture.TextureAtlas;
+import space.novium.nebula.core.resources.ResourceLocation;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
