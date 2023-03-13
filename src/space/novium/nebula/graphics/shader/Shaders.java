@@ -12,10 +12,11 @@ import static org.lwjgl.opengl.GL20.glUseProgram;
 
 public class Shaders {
     public static final int VERTEX_ATTRIB = 0;
-    public static final int TEX_COORD_ATTRIB = 0;
+    public static final int TEX_COORD_ATTRIB = 1;
     private final int ID;
 
     public static Shaders DEFAULT;
+    public static Shaders TEST;
 
     private Map<String, Integer> locationCache = new HashMap<>();
 
@@ -25,6 +26,7 @@ public class Shaders {
 
     public static void loadShaders(){
         DEFAULT = new Shaders(DEFAULT_VERTEX, DEFAULT_FRAGMENT);
+        TEST = new Shaders(TEST_VERTEX, TEST_FRAGMENT);
     }
 
     public int getUniform(String name){
@@ -66,9 +68,13 @@ public class Shaders {
 
     public static final ResourceLocation DEFAULT_VERTEX;
     public static final ResourceLocation DEFAULT_FRAGMENT;
+    public static final ResourceLocation TEST_VERTEX;
+    public static final ResourceLocation TEST_FRAGMENT;
 
     static {
         DEFAULT_VERTEX = new ResourceLocation("shaders/default.vert");
         DEFAULT_FRAGMENT = new ResourceLocation("shaders/default.frag");
+        TEST_VERTEX = new ResourceLocation("shaders/test.vert");
+        TEST_FRAGMENT = new ResourceLocation("shaders/test.frag");
     }
 }

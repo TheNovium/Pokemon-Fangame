@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL;
 import space.novium.level.IntroScene;
 import space.novium.level.Scene;
 import space.novium.nebula.KeyInput;
+import space.novium.nebula.graphics.shader.Shaders;
 import space.novium.utils.math.Vector2i;
 
 import java.util.function.Supplier;
@@ -25,7 +26,7 @@ public class Window implements Runnable {
     private boolean running;
     private double goalFPS;
     private Vector2i windowSize;
-    private static Scene currentScene = new IntroScene();
+    private static Scene currentScene;
 
     private Window(){}
 
@@ -80,6 +81,10 @@ public class Window implements Runnable {
         return windowSize.getY();
     }
 
+    public float getAspectRatio(){
+        return ((float) getWidth()) / ((float) getHeight());
+    }
+
     private void render(){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glfwSwapBuffers(window);
@@ -132,9 +137,11 @@ public class Window implements Runnable {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        //TODO load shaders
+        Shaders.loadShaders();
 
         //TODO load texture atlas and initialize atlases
+
+        setScene(IntroScene::new);
 
         running = true;
     }

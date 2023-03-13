@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class IOUtils {
-    private static final String ROOT = "engine/src/";
+    private static final String ROOT = "src/";
 
     private IOUtils(){}
 
