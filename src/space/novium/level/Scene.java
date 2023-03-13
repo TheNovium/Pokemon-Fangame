@@ -6,4 +6,6 @@ public abstract class Scene {
     public void init(){}
 
     public abstract void update(float dt);
+
+    public abstract void render();
 }

@@ -1,8 +1,7 @@
 package space.novium.level;
 
-import space.novium.nebula.graphics.shader.Shaders;
-
 public class IntroScene extends Scene {
+
     public IntroScene(){}
 
     public void init(){
@@ -10,6 +9,9 @@ public class IntroScene extends Scene {
 
     @Override
     public void update(float dt) {
-        Shaders.DEFAULT.enable();
+    }
+
+    @Override
+    public void render() {
     }
 }

@@ -31,12 +31,12 @@ public class ShaderUtils {
         int vertID = glCreateShader(GL_VERTEX_SHADER);
         int fragID = glCreateShader(GL_FRAGMENT_SHADER);
         glShaderSource(vertID, vert);
-        glShaderSource(fragID, frag);
         glCompileShader(vertID);
         if(glGetShaderi(vertID, GL_COMPILE_STATUS) == GL_FALSE){
             System.err.println("Failed to compile vertex shader!");
             return -1;
         }
+        glShaderSource(fragID, frag);
         glCompileShader(fragID);
         if(glGetShaderi(fragID, GL_COMPILE_STATUS) == GL_FALSE){
             System.err.println("Failed to compile fragment shader!");
@@ -46,6 +46,10 @@ public class ShaderUtils {
         glAttachShader(program, vertID);
         glAttachShader(program, fragID);
         glLinkProgram(program);
+        if(glGetProgrami(program, GL_LINK_STATUS) == GL_FALSE){
+            System.err.println("Failed to link shaders to program!");
+            return -1;
+        }
         glValidateProgram(program);
 
         glDeleteShader(vertID);
