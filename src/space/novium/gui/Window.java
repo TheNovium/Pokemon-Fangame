@@ -1,6 +1,7 @@
 package space.novium.gui;
 
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import space.novium.utils.math.Vector2i;
@@ -67,10 +68,12 @@ public class Window implements Runnable {
     }
 
     private void render(){
-        //TODO render the game!
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glfwSwapBuffers(window);
     }
 
     private void update(){
+        glfwPollEvents();
         //TODO update the game logic
     }
 
@@ -79,6 +82,8 @@ public class Window implements Runnable {
     }
 
     public void init(){
+        GLFWErrorCallback.createPrint(System.err).set();
+
         if(!glfwInit()){
             throw new RuntimeException("Unable to initialize GLFW!");
         }
