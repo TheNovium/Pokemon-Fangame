@@ -1,8 +1,11 @@
 package space.novium.utils;
 
 import space.novium.gui.Window;
+import space.novium.utils.math.Matrix4f;
 
 public class TextureUtils {
+    public static final Matrix4f ORTHO_MATRIX = Matrix4f.orthographic(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
+
     public static final byte[] INDICES = {0, 1, 2, 2, 3, 0};
 
     public static float[] getDrawLocation(float x, float y, float z, float w, float h, boolean squared){

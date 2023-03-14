@@ -1,12 +1,16 @@
 #version 330 core
-layout (location = 0) in vec3 pos;
-layout (location = 1) in vec4 color;
 
-out DATA{
-    vec4 fColor;
+layout (location = 0) in vec4 position;
+layout (location = 1) in vec2 tc;
+
+uniform mat4 ortho_matrix;
+uniform mat4 view_matrix;
+
+out DATA {
+    vec2 tc;
 } fs_out;
 
-void main() {
-    fs_out.fColor = color;
-    gl_Position = vec4(pos, 1.0);
+void main(){
+    gl_Position = ortho_matrix * view_matrix * position;
+    fs_out.tc = tc;
 }

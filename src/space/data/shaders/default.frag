@@ -1,9 +1,15 @@
 #version 330 core
 
-in DATA{
-    vec4 fColor;
+layout (location = 0) out vec4 color;
+
+uniform sampler2D tex;
+uniform float alpha;
+
+in DATA {
+    vec2 tc;
 } fs_in;
 
-void main() {
-    gl_FragColor = fs_in.fColor;
+void main(){
+    color = texture(tex, fs_in.tc);
+    color.a *= alpha;
 }

@@ -35,7 +35,7 @@ public class Shader {
         }
         int result = glGetUniformLocation(ID, name);
         if(result == -1){
-            System.err.println("Unable to locate shader with name " + name);
+            System.err.println("Unable to locate shader uniform with name " + name);
         } else {
             locationCache.put(name, result);
         }
