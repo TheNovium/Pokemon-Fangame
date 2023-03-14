@@ -1,6 +1,7 @@
 package space.novium.nebula.core.resources;
 
 import space.novium.Game;
+import space.novium.nebula.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,9 @@ public class Registry<T> {
     private static final Map<ResourceLocation, Supplier<?>> LOADERS = new HashMap<>();
     private static final Map<ResourceLocation, Registry<?>> REGISTRIES = new HashMap<>();
     public static final ResourceLocation ROOT_REGISTRY_NAME = new ResourceLocation("root");
+    public static final ResourceKey<Registry<Item>> ITEMS = createRegistryKey("items");
+
+    public static final Registry<Item> ITEM_REGISTRY = new Registry<>(ITEMS);
 
     private static <T> ResourceKey<Registry<T>> createRegistryKey(String key){
         return ResourceKey.createRegistryKey(new ResourceLocation(key));

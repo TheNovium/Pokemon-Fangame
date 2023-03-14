@@ -39,6 +39,11 @@ public class Camera {
         position.y += dy;
     }
 
+    public void setPosition(float x, float y){
+        position.x = x;
+        position.y = y;
+    }
+
     public void scale(float ds){
         scale.x += ds;
         scale.y += ds;

@@ -14,8 +14,8 @@ public class TextureUtils {
     public static float[] getDrawLocation(float x, float y, float z, float w, float h, boolean squared){
         if(squared){
             float rat = Window.get().getAspectRatio();
+            y *= rat;
             h *= rat;
-            y -= h / 2;
         }
         return new float[]{
                 x, y, z,
