@@ -1,6 +1,6 @@
 package space.novium.nebula.graphics;
 
-import space.novium.nebula.graphics.shader.Shaders;
+import space.novium.nebula.graphics.shader.Shader;
 import space.novium.utils.BufferUtils;
 
 import static org.lwjgl.opengl.GL30.*;
@@ -19,14 +19,14 @@ public class VertexArray {
         vbo = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(vertices), GL_STATIC_DRAW);
-        glVertexAttribPointer(Shaders.VERTEX_ATTRIB, 3, GL_FLOAT, false, 0, 0);
-        glEnableVertexAttribArray(Shaders.VERTEX_ATTRIB);
+        glVertexAttribPointer(Shader.VERTEX_ATTRIB, 3, GL_FLOAT, false, 0, 0);
+        glEnableVertexAttribArray(Shader.VERTEX_ATTRIB);
 
         tbo = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, tbo);
         glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(textureCoordinates), GL_STATIC_DRAW);
-        glVertexAttribPointer(Shaders.TEX_COORD_ATTRIB, 2, GL_FLOAT, false, 0, 0);
-        glEnableVertexAttribArray(Shaders.TEX_COORD_ATTRIB);
+        glVertexAttribPointer(Shader.TEX_COORD_ATTRIB, 2, GL_FLOAT, false, 0, 0);
+        glEnableVertexAttribArray(Shader.TEX_COORD_ATTRIB);
 
         ibo = glGenBuffers();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);

@@ -10,23 +10,23 @@ import java.util.Map;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glUseProgram;
 
-public class Shaders {
+public class Shader {
     public static final int VERTEX_ATTRIB = 0;
     public static final int TEX_COORD_ATTRIB = 1;
     private final int ID;
 
-    public static Shaders DEFAULT;
-    public static Shaders TEST;
+    public static Shader DEFAULT;
+    public static Shader TEST;
 
     private Map<String, Integer> locationCache = new HashMap<>();
 
-    public Shaders(ResourceLocation vertex, ResourceLocation fragment){
+    public Shader(ResourceLocation vertex, ResourceLocation fragment){
         ID = ShaderUtils.load(vertex, fragment);
     }
 
     public static void loadShaders(){
-        DEFAULT = new Shaders(DEFAULT_VERTEX, DEFAULT_FRAGMENT);
-        TEST = new Shaders(TEST_VERTEX, TEST_FRAGMENT);
+        DEFAULT = new Shader(DEFAULT_VERTEX, DEFAULT_FRAGMENT);
+        TEST = new Shader(TEST_VERTEX, TEST_FRAGMENT);
     }
 
     public int getUniform(String name){

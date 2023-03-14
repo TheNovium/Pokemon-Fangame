@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL;
 import space.novium.level.IntroScene;
 import space.novium.level.Scene;
 import space.novium.nebula.KeyInput;
-import space.novium.nebula.graphics.shader.Shaders;
+import space.novium.nebula.graphics.shader.Shader;
 import space.novium.utils.math.Vector2i;
 
 import java.util.function.Supplier;
@@ -138,7 +138,7 @@ public class Window implements Runnable {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        Shaders.loadShaders();
+        Shader.loadShaders();
 
         //TODO load texture atlas and initialize atlases
 
