@@ -1,5 +1,7 @@
 package space.novium.nebula.core;
 
+import space.novium.nebula.graphics.renderer.Transform;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,10 +9,12 @@ import java.util.List;
 public class GameObject {
     private String name;
     private List<Component> components;
+    private Transform transform;
 
     public GameObject(String name){
         this.name = name;
         this.components = Collections.synchronizedList(new ArrayList<>());
+        this.transform = new Transform();
     }
 
     public <T extends Component> T getComponent(Class<T> componentClass){
@@ -52,5 +56,9 @@ public class GameObject {
         for(Component component : components){
             component.start();
         }
+    }
+
+    public Transform getTransform() {
+        return transform;
     }
 }

@@ -3,8 +3,9 @@ package space.novium.utils;
 import space.novium.gui.Window;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.utils.math.Matrix4f;
+import space.novium.utils.math.Vector4f;
 
-public class TextureUtils {
+public final class TextureUtils {
     public static final Matrix4f ORTHO_MATRIX = Matrix4f.orthographic(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
     public static final ResourceLocation NO_TEXTURE = new ResourceLocation("no_texture");
 
@@ -35,6 +36,15 @@ public class TextureUtils {
                 x, y,
                 x + w, y,
                 x + w, y + h
+        };
+    }
+
+    public static float[] getTextureDrawCoordinates(Vector4f vec4){
+        return new float[] {
+                vec4.getX(), vec4.getY() + vec4.getH(),
+                vec4.getX(), vec4.getY(),
+                vec4.getX() + vec4.getW(), vec4.getY(),
+                vec4.getX() + vec4.getW(), vec4.getY() + vec4.getH()
         };
     }
 }

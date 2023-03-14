@@ -150,4 +150,8 @@ public class Window implements Runnable {
     public void setTitle(CharSequence title){
         glfwSetWindowTitle(window, title);
     }
+
+    public Scene getScene(){
+        return currentScene;
+    }
 }

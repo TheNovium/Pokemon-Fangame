@@ -31,4 +31,22 @@ public class Vector2f {
     public void setY(float y) {
         this.y = y;
     }
+
+    public void add(Vector2f add){
+        add(add.x, add.y);
+    }
+
+    public void add(float dx, float dy){
+        this.x += dx;
+        this.y += dy;
+    }
+
+    public void mult(Vector2f mult){
+        mult(mult.x, mult.y);
+    }
+
+    public void mult(float dx, float dy){
+        this.x *= dx;
+        this.y *= dy;
+    }
 }

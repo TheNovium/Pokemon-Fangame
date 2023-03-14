@@ -12,11 +12,22 @@ public class Sprite {
         this.atlasType = type;
     }
 
+    public void addDrawLocation(Vector4f drawLoc){
+        textureLocations.add(drawLoc);
+    }
+
     public TextureAtlasType getAtlasType() {
         return atlasType;
     }
 
     public boolean animated(){
         return textureLocations.size() > 1;
+    }
+
+    public Vector4f getFrame(int frame){
+        if(frame >= 0 && frame < textureLocations.size()){
+            return textureLocations.get(frame);
+        }
+        return null;
     }
 }
