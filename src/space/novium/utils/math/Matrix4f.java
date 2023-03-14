@@ -32,9 +32,9 @@ public class Matrix4f {
     }
 
     public Matrix4f translate(Vector3f vec){
-        elements[12] *= vec.x;
-        elements[13] *= vec.y;
-        elements[14] *= vec.z;
+        elements[12] += vec.x;
+        elements[13] += vec.y;
+        elements[14] += vec.z;
         return this;
     }
 
@@ -76,5 +76,17 @@ public class Matrix4f {
 
     public FloatBuffer toFloatBuffer(){
         return BufferUtils.createFloatBuffer(elements);
+    }
+
+    public String toString(){
+        StringBuilder builder = new StringBuilder("[");
+        for(int i = 0; i < elements.length; i++){
+            if(i % SIZE == 0 && i != 0){
+                builder.append('\n');
+            }
+            builder.append(elements[i] + ", ");
+        }
+        builder.append("\b]");
+        return builder.toString();
     }
 }
