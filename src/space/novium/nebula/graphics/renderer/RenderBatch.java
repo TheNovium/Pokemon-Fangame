@@ -3,13 +3,14 @@ package space.novium.nebula.graphics.renderer;
 import space.novium.gui.Window;
 import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.graphics.shader.Shader;
+import space.novium.nebula.graphics.texture.TextureAtlasHandler;
 import space.novium.utils.TextureUtils;
 import space.novium.utils.math.Vector2f;
 import space.novium.utils.math.Vector4f;
 
 import static org.lwjgl.opengl.GL30.*;
 
-public class RenderBatch {
+public class RenderBatch implements Comparable<RenderBatch> {
     /**
      * Vertex array information
      * ----------
@@ -36,17 +37,17 @@ public class RenderBatch {
 
     private int vao, vbo;
     private int maxBatchSize;
-    private Shader shader;
+    private int zIndex;
 
-    public RenderBatch(int maxBatchSize, Shader shader){
+    public RenderBatch(int maxBatchSize, int zIndex){
         this.maxBatchSize = maxBatchSize;
         this.sprites = new SpriteRenderer[maxBatchSize];
-        this.shader = shader;
 
         vertices = new float[maxBatchSize * 4 * VERTEX_SIZE];
 
         this.numSprites = 0;
         this.hasRoom = true;
+        this.zIndex = zIndex;
     }
 
     public void start(){
@@ -67,11 +68,19 @@ public class RenderBatch {
 
         glVertexAttribPointer(1, COLOR_SIZE, GL_FLOAT, false, VERTEX_SIZE_BYTES, COLOR_OFFSET);
         glEnableVertexAttribArray(1);
+
+        glVertexAttribPointer(2, TEX_COORD_SIZE, GL_FLOAT, false, VERTEX_SIZE_BYTES, TEX_COORD_OFFSET);
+        glEnableVertexAttribArray(2);
+
+        glVertexAttribPointer(3, ID_SIZE, GL_FLOAT, false, VERTEX_SIZE_BYTES, ID_OFFSET);
+        glEnableVertexAttribArray(3);
     }
 
-    public void render(){
+    public void render(TextureAtlasHandler handler){
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
+
+        Shader shader = Renderer.getBoundShader();
 
         shader.enable();
         shader.setUniformMat4("ortho_matrix", Window.get().getScene().getCamera().getProjectionMatrix());
@@ -135,6 +144,10 @@ public class RenderBatch {
         }
     }
 
+    public boolean hasRoom(){
+        return numSprites < maxBatchSize;
+    }
+
     private int[] generateIndices(){
         int[] elements = new int[6 * maxBatchSize];
         for(int i = 0; i < maxBatchSize; i++){
@@ -149,5 +162,16 @@ public class RenderBatch {
             elements[offset + 5] = add;
         }
         return elements;
+    }
+
+    public int getZIndex(){
+        return zIndex;
+    }
+
+    public void clear(){}
+
+    @Override
+    public int compareTo(RenderBatch o){
+        return o.getZIndex() - getZIndex();
     }
 }
