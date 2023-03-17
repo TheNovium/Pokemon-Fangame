@@ -117,13 +117,8 @@ public class RenderBatch implements Comparable<RenderBatch> {
             }
             Vector2f pos = spr.getGameObject().getTransform().getPosition();
             Vector2f scale = spr.getGameObject().getTransform().getScale();
-            Vector2f currentPos = new Vector2f(
-                    pos.x + (xAdd * scale.x),
-                    pos.y + (yAdd * scale.y)
-            );
-
-            vertices[offset] = currentPos.x;
-            vertices[offset + 1] = currentPos.y;
+            vertices[offset] = pos.x;
+            vertices[offset + 1] = pos.y;
 
             vertices[offset + 2] = color.getX();
             vertices[offset + 3] = color.getY();
@@ -135,6 +130,7 @@ public class RenderBatch implements Comparable<RenderBatch> {
 
             vertices[offset + 8] = texID;
 
+            System.out.println("Added corner" + i + " at (" + pos.x + ", " + pos.y + ")");
             offset += VERTEX_SIZE;
         }
         numSprites++;

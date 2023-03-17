@@ -21,6 +21,12 @@ public class Renderer {
 
     private Renderer(){
         this.batches = Collections.synchronizedList(new ArrayList<>());
+
+        //Initialize the shaders
+        Shader.loadShaders();
+        boundShader = Shader.DEFAULT;
+
+        //Create the texture atlas
         TextureAtlasHandler.Builder builder = new TextureAtlasHandler.Builder(Game.ID);
 
         //Add all the textures the renderer will use to the texture atlas
@@ -70,6 +76,10 @@ public class Renderer {
 
     public static Shader getBoundShader() {
         return boundShader;
+    }
+
+    public TextureAtlasHandler getHandler(){
+        return handler;
     }
 
     public void render(){

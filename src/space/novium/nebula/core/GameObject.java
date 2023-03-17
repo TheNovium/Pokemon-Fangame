@@ -12,9 +12,13 @@ public class GameObject {
     private Transform transform;
 
     public GameObject(String name){
+        this(name, new Transform());
+    }
+
+    public GameObject(String name, Transform transform){
         this.name = name;
         this.components = Collections.synchronizedList(new ArrayList<>());
-        this.transform = new Transform();
+        this.transform = transform;
     }
 
     public <T extends Component> T getComponent(Class<T> componentClass){

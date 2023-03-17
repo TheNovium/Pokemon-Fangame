@@ -12,9 +12,11 @@ public class GameItems {
     private GameItems(){}
 
     public static final RegistryObject<Item> POKEBALL = Registry.ITEM_REGISTRY.register("pokeball", PokeballItem::new);
+    public static final RegistryObject<Item> RADIOBALL = Registry.ITEM_REGISTRY.register("radioball", PokeballItem::new);
 
     @EventListener(event = EventType.ITEM_REGISTRATION)
     public static void register(IEventRegister<Item> register){
         register.register(POKEBALL);
+        register.register(RADIOBALL);
     }
 }

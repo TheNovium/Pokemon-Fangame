@@ -2,6 +2,7 @@ package space.novium.nebula.graphics.texture;
 
 import space.novium.utils.math.Vector4f;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sprite {
@@ -10,6 +11,7 @@ public class Sprite {
 
     public Sprite(TextureAtlasType type){
         this.atlasType = type;
+        this.textureLocations = new ArrayList<>();
     }
 
     public void addDrawLocation(Vector4f drawLoc){
@@ -28,6 +30,6 @@ public class Sprite {
         if(frame >= 0 && frame < textureLocations.size()){
             return textureLocations.get(frame);
         }
-        return null;
+        return new Vector4f(1.0f);
     }
 }

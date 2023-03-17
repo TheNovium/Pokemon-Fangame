@@ -140,10 +140,6 @@ public class Window implements Runnable {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        Shader.loadShaders();
-
-        //TODO load texture atlas and initialize atlases
-
         setScene(IntroScene::new);
 
         running = true;
