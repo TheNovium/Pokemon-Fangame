@@ -26,6 +26,10 @@ public enum TextureAtlasType {
         return glTexture;
     }
 
+    public int getTexId(){
+        return (glTexture - GL_TEXTURE0);
+    }
+
     public int getTextureValue(){
         return glTexture - GL_TEXTURE0;
     }

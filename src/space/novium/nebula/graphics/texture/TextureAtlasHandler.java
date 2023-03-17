@@ -1,6 +1,8 @@
 package space.novium.nebula.graphics.texture;
 
+import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.core.resources.ResourceLocation;
+import space.novium.utils.math.Vector4f;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
@@ -17,6 +19,19 @@ public class TextureAtlasHandler {
 
     public TextureAtlas getAtlas(TextureAtlasType type){
         return atlases.getOrDefault(type, null);
+    }
+
+    public SpriteRenderer getRendererForResourceLocation(ResourceLocation loc){
+        for(TextureAtlasType type : TextureAtlasType.values()){
+            if(atlases.get(type).hasResource(loc)){
+                SpriteRenderer spr = new SpriteRenderer(type);
+                spr.addDrawLocation(atlases.get(type).getRelativeImageLocation(loc));
+                return spr;
+            }
+        }
+        SpriteRenderer spr = new SpriteRenderer(TextureAtlasType.NONE);
+        spr.addDrawLocation(new Vector4f(0, 0, 1, 1));
+        return spr;
     }
 
     public static class Builder {

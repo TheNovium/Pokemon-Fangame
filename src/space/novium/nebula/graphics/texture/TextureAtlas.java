@@ -3,6 +3,7 @@ package space.novium.nebula.graphics.texture;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.utils.IOUtils;
 import space.novium.utils.math.Vector2i;
+import space.novium.utils.math.Vector4f;
 import space.novium.utils.math.Vector4i;
 
 import javax.imageio.ImageIO;
@@ -37,6 +38,16 @@ public class TextureAtlas {
 
     public Vector4i getImageLocation(ResourceLocation loc){
         return imageLocs.getOrDefault(loc, getNullLocation());
+    }
+
+    public Vector4f getRelativeImageLocation(ResourceLocation loc){
+        Vector4i standard = getImageLocation(loc);
+        Vector4f ret = new Vector4f();
+        ret.setX(((float) standard.x) / ((float) texture.getWidth()));
+        ret.setY(((float) standard.y) / ((float) texture.getHeight()));
+        ret.setW(((float) standard.w) / ((float) texture.getWidth()));
+        ret.setH(((float) standard.h) / ((float) texture.getHeight()));
+        return ret;
     }
 
     public Vector4i getNullLocation(){

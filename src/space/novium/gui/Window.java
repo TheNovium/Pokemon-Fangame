@@ -7,7 +7,8 @@ import org.lwjgl.opengl.GL;
 import space.novium.level.IntroScene;
 import space.novium.level.Scene;
 import space.novium.nebula.KeyInput;
-import space.novium.nebula.graphics.shader.Shaders;
+import space.novium.nebula.graphics.renderer.Renderer;
+import space.novium.nebula.graphics.shader.Shader;
 import space.novium.utils.math.Vector2i;
 
 import java.util.function.Supplier;
@@ -27,6 +28,7 @@ public class Window implements Runnable {
     private double goalFPS;
     private Vector2i windowSize;
     private static Scene currentScene;
+    private Renderer renderer;
 
     private Window(){}
 
@@ -131,16 +133,12 @@ public class Window implements Runnable {
         glfwShowWindow(window);
         GL.createCapabilities();
 
-        //TODO init and enable renderer
+        renderer = Renderer.get();
 
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-        Shaders.loadShaders();
-
-        //TODO load texture atlas and initialize atlases
 
         setScene(IntroScene::new);
 
@@ -149,5 +147,9 @@ public class Window implements Runnable {
 
     public void setTitle(CharSequence title){
         glfwSetWindowTitle(window, title);
+    }
+
+    public Scene getScene(){
+        return currentScene;
     }
 }
