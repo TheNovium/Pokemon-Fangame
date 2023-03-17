@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL;
 import space.novium.level.IntroScene;
 import space.novium.level.Scene;
 import space.novium.nebula.KeyInput;
+import space.novium.nebula.graphics.renderer.Renderer;
 import space.novium.nebula.graphics.shader.Shader;
 import space.novium.utils.math.Vector2i;
 
@@ -27,6 +28,7 @@ public class Window implements Runnable {
     private double goalFPS;
     private Vector2i windowSize;
     private static Scene currentScene;
+    private Renderer renderer;
 
     private Window(){}
 
@@ -131,7 +133,7 @@ public class Window implements Runnable {
         glfwShowWindow(window);
         GL.createCapabilities();
 
-        //TODO init and enable renderer
+        renderer = Renderer.get();
 
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_DEPTH_TEST);
