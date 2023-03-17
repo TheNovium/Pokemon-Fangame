@@ -1,5 +1,6 @@
 package space.novium.nebula.item;
 
+import space.novium.nebula.core.GameObject;
 import space.novium.nebula.core.resources.ResourceLocation;
 
 public class Item {
@@ -8,12 +9,14 @@ public class Item {
     private final int stackSize;
     private final boolean infinite;
     private String name;
+    protected GameObject gameObject;
 
     public Item(Properties properties){
         this.category = properties.category;
         this.rarity = properties.rarity;
         this.stackSize = properties.stack;
         this.infinite = properties.infinite;
+        this.gameObject = new GameObject(getRegistryName());
     }
 
     public Item asItem(){
@@ -42,6 +45,10 @@ public class Item {
 
     public Rarity getRarity() {
         return rarity;
+    }
+
+    protected GameObject getGameObject() {
+        return gameObject;
     }
 
     public static class Properties {
