@@ -11,6 +11,7 @@ public class SpriteRenderer extends Component {
     private int frame;
     private Vector4f color;
     private TextureAtlasType type;
+    private boolean isDirty = true;
 
     public SpriteRenderer(TextureAtlasType type){
         this.sprite = new Sprite(type);
@@ -55,6 +56,10 @@ public class SpriteRenderer extends Component {
         sprite.addDrawLocation(drawLoc);
     }
 
+    public int getGlId(){
+        return getType().getTexId();
+    }
+
     @Override
     public void setGameObject(GameObject obj) {
         super.setGameObject(obj);
@@ -73,5 +78,17 @@ public class SpriteRenderer extends Component {
     @Override
     public void tick() {
 
+    }
+
+    public boolean isDirty() {
+        return isDirty;
+    }
+
+    public void setDirty(){
+        this.isDirty = true;
+    }
+
+    public void setClean(){
+        this.isDirty = false;
     }
 }

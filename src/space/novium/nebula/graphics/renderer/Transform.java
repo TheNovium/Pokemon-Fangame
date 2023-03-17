@@ -53,6 +53,19 @@ public class Transform {
         scale.mult(ds, ds);
     }
 
+    public void setScale(Vector2f s){
+        setScale(s.x, s.y);
+    }
+
+    public void setScale(float s){
+        setScale(s, s);
+    }
+
+    public void setScale(float x, float y){
+        scale.x = x;
+        scale.y = y;
+    }
+
     public void setZ(int z) {
         this.z = z;
     }

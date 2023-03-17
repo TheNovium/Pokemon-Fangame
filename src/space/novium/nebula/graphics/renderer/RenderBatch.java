@@ -1,6 +1,5 @@
 package space.novium.nebula.graphics.renderer;
 
-import space.novium.gui.Window;
 import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.graphics.shader.Shader;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
@@ -76,24 +75,46 @@ public class RenderBatch implements Comparable<RenderBatch> {
         glEnableVertexAttribArray(3);
     }
 
-    public void render(TextureAtlasHandler handler){
-        glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
+    public void render(){
+        boolean rebuffData = false;
+        for(int i = 0; i < numSprites; i++){
+            SpriteRenderer spr = sprites[i];
+            if(spr.isDirty()){
+                loadVertexProperties(i);
+                spr.setClean();
+                rebuffData = true;
+            }
+
+            if(spr.getGameObject().getTransform().getZ() != this.zIndex){
+                remove(spr);
+                Renderer.get().add(spr);
+                i--;
+            }
+        }
+
+        if(rebuffData){
+            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
+        }
 
         Shader shader = Renderer.getBoundShader();
 
         shader.enable();
-        shader.setUniformMat4("ortho_matrix", Window.get().getScene().getCamera().getProjectionMatrix());
-        shader.setUniformMat4("view_matrix", Window.get().getScene().getCamera().getViewMatrix());
+        shader.setUniformMat4("ortho_matrix", TextureUtils.ORTHO_MATRIX);
+        shader.setUniformMat4("view_matrix", TextureUtils.ORTHO_MATRIX);
 
         glBindVertexArray(vao);
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
+        glEnableVertexAttribArray(2);
+        glEnableVertexAttribArray(3);
 
         glDrawElements(GL_TRIANGLES, numSprites * 6, GL_UNSIGNED_INT, 0);
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
+        glDisableVertexAttribArray(2);
+        glDisableVertexAttribArray(3);
         glBindVertexArray(0);
 
         shader.disable();
@@ -101,24 +122,33 @@ public class RenderBatch implements Comparable<RenderBatch> {
 
     public void addSprite(SpriteRenderer spr){
         sprites[numSprites] = spr;
-        int offset = numSprites * 4 * VERTEX_SIZE;
+        loadVertexProperties(numSprites);
+        numSprites++;
+
+        if(numSprites >= maxBatchSize){
+            hasRoom = false;
+        }
+    }
+
+    private void loadVertexProperties(int index){
+        SpriteRenderer spr = sprites[index];
+        int offset = index * 4 * VERTEX_SIZE;
         Vector4f color = spr.getColor();
         float[] texCoords = TextureUtils.getTextureDrawCoordinates(spr.getFrame());
-        int texID = spr.getType().getTexId();
-        float xAdd = -1.0f;
-        float yAdd = -1.0f;
+        float xAdd = 0;
+        float yAdd = 0;
         for(int i = 0; i < 4; i++){
             if(i == 1){
                 yAdd = 1.0f;
             } else if(i == 2){
                 xAdd = 1.0f;
             } else if(i == 3){
-                yAdd = -1.0f;
+                yAdd = 0;
             }
             Vector2f pos = spr.getGameObject().getTransform().getPosition();
             Vector2f scale = spr.getGameObject().getTransform().getScale();
-            vertices[offset] = pos.x;
-            vertices[offset + 1] = pos.y;
+            vertices[offset] = pos.x + (scale.x * xAdd);
+            vertices[offset + 1] = pos.y + (scale.y * yAdd);
 
             vertices[offset + 2] = color.getX();
             vertices[offset + 3] = color.getY();
@@ -128,16 +158,24 @@ public class RenderBatch implements Comparable<RenderBatch> {
             vertices[offset + 6] = texCoords[i * 2];
             vertices[offset + 7] = texCoords[(i * 2) + 1];
 
-            vertices[offset + 8] = texID;
+            vertices[offset + 8] = spr.getGlId();
 
-            System.out.println("Added corner" + i + " at (" + pos.x + ", " + pos.y + ")");
             offset += VERTEX_SIZE;
         }
-        numSprites++;
+    }
 
-        if(numSprites >= maxBatchSize){
-            hasRoom = false;
+    public boolean remove(SpriteRenderer spr){
+        for(int i = 0; i < numSprites; i++){
+            if(sprites[i].equals(spr)){
+                for(int j = i; j < numSprites; j++){
+                    sprites[j] = sprites[j + 1];
+                    sprites[j].setDirty();
+                }
+                numSprites--;
+                return true;
+            }
         }
+        return false;
     }
 
     public boolean hasRoom(){
