@@ -217,7 +217,10 @@ public class RenderBatch implements Comparable<RenderBatch> {
         return zIndex;
     }
 
-    public void clear(){}
+    public void clear(){
+        glDeleteVertexArrays(vao);
+        glDeleteBuffers(vbo);
+    }
 
     @Override
     public int compareTo(RenderBatch o){
