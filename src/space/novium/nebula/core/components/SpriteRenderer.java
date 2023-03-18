@@ -35,6 +35,7 @@ public class SpriteRenderer extends Component {
     public Vector4f nextFrame(){
         if(sprite.getFrame(frame + 1) != null){
             frame++;
+            setDirty();
         }
         return getFrame();
     }
@@ -42,6 +43,7 @@ public class SpriteRenderer extends Component {
     public Vector4f previousFrame(){
         if(frame > 0){
             frame--;
+            setDirty();
         }
         return getFrame();
     }
@@ -58,6 +60,11 @@ public class SpriteRenderer extends Component {
 
     public int getGlId(){
         return getType().getTexId();
+    }
+
+    public void setColor(float r, float g, float b, float a){
+        this.color = new Vector4f(r, g, b, a);
+        setDirty();
     }
 
     @Override

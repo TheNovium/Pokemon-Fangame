@@ -106,4 +106,10 @@ public class FontPart{
             drawY -= textHeight;
         }
     }
+
+    public void setColor(float r, float g, float b, float a){
+        for(SpriteRenderer spr : spriteRenderers){
+            spr.setColor(r, g, b, a);
+        }
+    }
 }

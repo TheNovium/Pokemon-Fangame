@@ -53,7 +53,7 @@ public class IOUtils {
 
     public static Font loadFont(ResourceLocation loc){
         try {
-            InputStream stream = loadFileInputStream(loc, "data/fonts", "ttf");
+            InputStream stream = loadFileInputStream(loc, "resources/fonts", "ttf");
             return Font.createFont(Font.TRUETYPE_FONT, stream);
         } catch(Exception e){
             return new Font("Monospaced", Font.BOLD, 48);
