@@ -27,6 +27,7 @@ public class Window implements Runnable {
     private double goalFPS;
     private Vector2i windowSize;
     private static Scene currentScene;
+    private float alpha = 1.0f;
 
     private Window(){}
 
@@ -112,7 +113,7 @@ public class Window implements Runnable {
             throw new RuntimeException("Unable to initialize GLFW!");
         }
 
-        windowSize = new Vector2i(1080, 720);
+        windowSize = new Vector2i(1620, 1080);
         goalFPS = 60.0;
 
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
@@ -154,5 +155,13 @@ public class Window implements Runnable {
 
     public Scene getScene(){
         return currentScene;
+    }
+
+    public float getMasterAlpha(){
+        return alpha;
+    }
+
+    public void setMasterAlpha(float alpha){
+        this.alpha = alpha;
     }
 }

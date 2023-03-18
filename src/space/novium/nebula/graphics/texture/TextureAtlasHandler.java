@@ -52,6 +52,10 @@ public class TextureAtlasHandler {
             atlasBuilders = new HashMap<>();
         }
 
+        public Builder loadTexture(ResourceLocation loc, TextureAtlasType type){
+            return loadTexture(loc, loc, type);
+        }
+
 
         public Builder loadTexture(ResourceLocation loc, ResourceLocation home, TextureAtlasType type){
             if(!atlasBuilders.containsKey(type)){

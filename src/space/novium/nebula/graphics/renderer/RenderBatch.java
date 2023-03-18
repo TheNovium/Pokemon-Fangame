@@ -1,5 +1,6 @@
 package space.novium.nebula.graphics.renderer;
 
+import space.novium.gui.Window;
 import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.graphics.shader.Shader;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;

@@ -5,6 +5,7 @@ import space.novium.nebula.core.GameObject;
 import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.core.resources.registration.FontEventRegister;
 import space.novium.nebula.core.resources.registration.ItemEventRegister;
+import space.novium.nebula.core.resources.registration.ResourceEventRegister;
 import space.novium.nebula.graphics.shader.Shader;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
 
@@ -34,6 +35,8 @@ public class Renderer {
         ier.registerAll();
         FontEventRegister fer = new FontEventRegister(builder);
         fer.registerAll();
+        ResourceEventRegister rer = new ResourceEventRegister(builder);
+        rer.registerAll();
 
         handler = builder.build();
     }

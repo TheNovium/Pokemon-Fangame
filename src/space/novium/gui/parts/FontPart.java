@@ -42,7 +42,7 @@ public class FontPart{
     private void loadMessage(CharSequence chars){
         List<CharSequence> words = Arrays.asList(chars.toString().split(" "));
         int spaceWidth = font.getWidth(" ");
-        int maxWidth = (int)((float)(Window.get().getWidth() / 2) * width);
+        int maxWidth = (int)((float)(Window.get().getWidth()) * width);
         int currentWidth = 0;
         StringBuilder str = new StringBuilder();
         for(int i = 0; i < words.size(); i++){
@@ -76,7 +76,7 @@ public class FontPart{
         Vector4f fullAtlasLoc = Renderer.get().getHandler().getDrawLocationForResourceLocation(loc);
         for(int i = 0; i < lines.size(); i++){
             CharSequence s = lines.get(i);
-            float wordWidth = ((float) font.getWidth(s)) / windowDimensions.getX() * 2.0f;
+            float wordWidth = ((float) font.getWidth(s)) / windowDimensions.getX();
             float drawX;
             switch(alignment){
                 case CENTER -> drawX = position.x + ((width - wordWidth) / 2.0f);
@@ -93,7 +93,7 @@ public class FontPart{
                     spr.addDrawLocation(new Vector4f(
                             (((float) glyph.x) / ((float) font.getTotalWidth())) * fullAtlasLoc.getW(),
                             fullAtlasLoc.getY(),
-                            ((float) glyph.width) / ((float) font.getTotalWidth()),
+                            ((float) glyph.width) / ((float) font.getTotalWidth()) * fullAtlasLoc.getW(),
                             fullAtlasLoc.getH()
                     ));
                     GameObject gameObject = new GameObject(String.valueOf(c), new Transform(new Vector2f(drawX, drawY), new Vector2f(dispWidth, dispHeight), 64));
