@@ -10,9 +10,10 @@ import space.novium.utils.math.Vector2f;
 
 public class ImagePart {
     private GameObject gameObject;
+    private SpriteRenderer spr;
 
     public ImagePart(ResourceLocation loc){
-        this(loc, new Vector2f(-1.0f, -1.0f), new Vector2f(2.0f, 2.0f), 1);
+        this(loc, new Vector2f(-1.0f, -1.0f), new Vector2f(2.0f, 2.0f), Renderer.BACKGROUND_Z);
     }
 
     public ImagePart(ResourceLocation loc, Vector2f drawLocation, float size, int z){
@@ -20,9 +21,17 @@ public class ImagePart {
     }
 
     public ImagePart(ResourceLocation loc, Vector2f drawLocation, Vector2f size, int z){
-        SpriteRenderer spr = Renderer.get().getHandler().getRendererForResourceLocation(loc);
+        spr = Renderer.get().getHandler().getRendererForResourceLocation(loc);
         gameObject = new GameObject(loc.toString(), new Transform(drawLocation, size, z));
         gameObject.addComponent(spr);
         Renderer.get().add(gameObject);
+    }
+
+    public void setAlpha(float a){
+        spr.setColor(1.0f, 1.0f, 1.0f, a);
+    }
+
+    public void setColor(float r, float g, float b, float a){
+        spr.setColor(r, g, b, a);
     }
 }

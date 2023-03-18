@@ -2,6 +2,7 @@ package space.novium.nebula.graphics.renderer;
 
 import space.novium.gui.Window;
 import space.novium.nebula.core.components.SpriteRenderer;
+import space.novium.nebula.graphics.Camera;
 import space.novium.nebula.graphics.shader.Shader;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
 import space.novium.nebula.graphics.texture.TextureAtlasType;
@@ -107,12 +108,14 @@ public class RenderBatch implements Comparable<RenderBatch> {
             handler.getAtlas(type).getTexture().bind();
         }
 
+        Camera camera = Window.get().getScene().getCamera();
+
         Shader shader = Renderer.getBoundShader();
 
         shader.enable();
-        shader.setUniformMat4("ortho_matrix", TextureUtils.ORTHO_MATRIX);
-        shader.setUniformMat4("view_matrix", TextureUtils.ORTHO_MATRIX);
-        shader.setUniformIntArr("textures", new int[]{0, 1, 2, 3, 4, 5});
+        shader.setUniformMat4("ortho_matrix", camera.getProjectionMatrix());
+        shader.setUniformMat4("view_matrix", camera.getViewMatrix());
+        shader.setUniformIntArr("textures", new int[]{0, 1, 2, 3, 4, 5, 6});
 
         glBindVertexArray(vao);
         glEnableVertexAttribArray(0);
@@ -218,6 +221,6 @@ public class RenderBatch implements Comparable<RenderBatch> {
 
     @Override
     public int compareTo(RenderBatch o){
-        return o.getZIndex() - getZIndex();
+        return getZIndex() - o.getZIndex();
     }
 }

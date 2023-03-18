@@ -1,6 +1,7 @@
 package space.novium.nebula.graphics.renderer;
 
 import space.novium.utils.math.Vector2f;
+import space.novium.utils.math.Vector4f;
 
 public class Transform {
     private Vector2f position;
@@ -31,6 +32,10 @@ public class Transform {
         this.position = position;
         this.scale = scale;
         this.z = z;
+    }
+
+    public Transform(Vector4f draw, int z){
+        this(new Vector2f(draw.getX(), draw.getY()), new Vector2f(draw.getW(), draw.getH()), z);
     }
 
     public void move(float dx, float dy){

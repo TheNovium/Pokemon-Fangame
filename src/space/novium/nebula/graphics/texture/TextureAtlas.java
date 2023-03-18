@@ -121,6 +121,10 @@ public class TextureAtlas {
                     atlas.setLocation(NO_TEXTURE, new Vector4i(0, 0, 16, 16));
                     graphics.drawImage(IOUtils.loadImage(NO_TEXTURE), 0, 0, null);
                 }
+                case BLANK -> {
+                    atImg = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+                    atImg.setRGB(0, 0, 0xFFFFFFFF);
+                }
                 default -> {
                     int x = 0;
                     int y = 0;

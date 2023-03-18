@@ -6,7 +6,7 @@ in DATA {
     float id;
 } fs_in;
 
-uniform sampler2D textures[6];
+uniform sampler2D textures[7];
 
 out vec4 fcolor;
 

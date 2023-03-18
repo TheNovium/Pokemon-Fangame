@@ -27,7 +27,7 @@ public class Camera {
     }
 
     public Matrix4f getViewMatrix(){
-        Vector3f cameraFront = new Vector3f(position.x, position.y, -1.0f);
+        Vector3f cameraFront = new Vector3f(position.x, position.y, 0.0f);
         viewMatrix = Matrix4f.identity();
         viewMatrix.translate(cameraFront);
         viewMatrix.scale(scale.x, scale.y);

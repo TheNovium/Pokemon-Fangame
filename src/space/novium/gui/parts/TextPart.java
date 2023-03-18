@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FontPart{
+public class TextPart {
     private FontRenderer font;
     private Vector2f position;
     private TextAlign alignment;
@@ -27,7 +27,7 @@ public class FontPart{
     private CharSequence message;
     private List<SpriteRenderer> spriteRenderers;
 
-    public FontPart(CharSequence chars, Vector2f position, float width, TextAlign alignment, RegistryObject<FontRenderer> font){
+    public TextPart(CharSequence chars, Vector2f position, float width, TextAlign alignment, RegistryObject<FontRenderer> font){
         this.spriteRenderers = new ArrayList<>();
         this.message = chars;
         this.lines = new ArrayList<>();
@@ -96,7 +96,7 @@ public class FontPart{
                             ((float) glyph.width) / ((float) font.getTotalWidth()) * fullAtlasLoc.getW(),
                             fullAtlasLoc.getH()
                     ));
-                    GameObject gameObject = new GameObject(String.valueOf(c), new Transform(new Vector2f(drawX, drawY), new Vector2f(dispWidth, dispHeight), 63));
+                    GameObject gameObject = new GameObject(String.valueOf(c), new Transform(new Vector2f(drawX, drawY), new Vector2f(dispWidth, dispHeight), Renderer.TEXT_Z));
                     gameObject.addComponent(spr);
                     spriteRenderers.add(spr);
                     Renderer.get().add(gameObject);

@@ -6,6 +6,8 @@ import space.novium.nebula.graphics.texture.Sprite;
 import space.novium.nebula.graphics.texture.TextureAtlasType;
 import space.novium.utils.math.Vector4f;
 
+import java.awt.*;
+
 public class SpriteRenderer extends Component {
     private Sprite sprite;
     private int frame;
@@ -62,9 +64,23 @@ public class SpriteRenderer extends Component {
         return getType().getTexId();
     }
 
-    public void setColor(float r, float g, float b, float a){
+    public SpriteRenderer setColor(float r, float g, float b, float a){
         this.color = new Vector4f(r, g, b, a);
         setDirty();
+        return this;
+    }
+
+    public SpriteRenderer setColor(Vector4f vec4){
+        return setColor(vec4.getX(), vec4.getY(), vec4.getW(), vec4.getH());
+    }
+
+    public SpriteRenderer setColor(Color color){
+        return setColor(
+                ((float) color.getRed()) / 255.0f,
+                ((float) color.getGreen()) / 255.0f,
+                ((float) color.getBlue()) / 255.0f,
+                ((float) color.getAlpha()) / 255.0f
+        );
     }
 
     @Override

@@ -80,6 +80,8 @@ public class TextureAtlasHandler {
             for(TextureAtlasType type : TextureAtlasType.values()){
                 if(atlasBuilders.containsKey(type)){
                     handler.atlases.put(type, atlasBuilders.get(type).build());
+                } else if(type == TextureAtlasType.BLANK){
+                    handler.atlases.put(type, new TextureAtlas.Builder(TextureAtlasType.BLANK).build());
                 } else {
                     handler.atlases.put(type, new TextureAtlas.Builder(TextureAtlasType.NONE).build());
                 }
