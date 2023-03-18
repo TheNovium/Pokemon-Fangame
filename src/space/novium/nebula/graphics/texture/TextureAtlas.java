@@ -83,7 +83,7 @@ public class TextureAtlas {
         }
 
         public Builder addImage(ResourceLocation loc, ResourceLocation home){
-            BufferedImage img = IOUtils.loadImage(loc); //TODO add in IOUtils class to utils to load image from resource
+            BufferedImage img = IOUtils.loadImage(loc);
             return addImage(home, img);
         }
 

@@ -91,6 +91,37 @@ public class FontRenderer {
         return totalWidth;
     }
 
+    public int getWidth(CharSequence str){
+        int width = 0;
+        int lineWidth = 0;
+        for(int i = 0; i < str.length(); i++){
+            char c = str.charAt(i);
+            if(c == '\n'){
+                width = Math.max(width, lineWidth);
+                lineWidth = 0;
+                continue;
+            }
+            if(c == '\r') continue;
+            lineWidth += glyphs.get(c).width;
+        }
+        return Math.max(width, lineWidth);
+    }
+
+    public int getHeight(CharSequence str){
+        int height = glyphs.get('A').height;
+        for(int i = 0; i < str.length(); i++){
+            char c = str.charAt(i);
+            if(c == '\n'){
+                height += glyphs.get('A').height;
+            }
+        }
+        return height;
+    }
+
+    public Glyph getGlyph(char c){
+        return glyphs.getOrDefault(c, glyphs.get(' '));
+    }
+
     public class Glyph {
         public final int x;
         public final int y;

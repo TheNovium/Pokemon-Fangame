@@ -6,15 +6,11 @@ import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.core.resources.registration.FontEventRegister;
 import space.novium.nebula.core.resources.registration.ItemEventRegister;
 import space.novium.nebula.graphics.shader.Shader;
-import space.novium.nebula.graphics.texture.Texture;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
-import space.novium.nebula.graphics.texture.TextureAtlasType;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static org.lwjgl.opengl.GL30.*;
 
 public class Renderer {
     private final int MAX_BATCH_SIZE = 1024;
@@ -40,12 +36,6 @@ public class Renderer {
         fer.registerAll();
 
         handler = builder.build();
-
-        for(TextureAtlasType atlasType : TextureAtlasType.values()){
-            glActiveTexture(atlasType.getGlTexture());
-            Texture t = handler.getAtlas(atlasType).getTexture();
-            t.bind();
-        }
     }
 
     public static Renderer get(){
@@ -82,7 +72,10 @@ public class Renderer {
     }
 
     public void remove(GameObject gameObject){
-        for(RenderBatch batch : batches){
+        if(gameObject.getComponent(SpriteRenderer.class) != null){
+            for(RenderBatch batch : batches){
+                batch.remove(gameObject.getComponent(SpriteRenderer.class));
+            }
         }
     }
 
@@ -101,7 +94,7 @@ public class Renderer {
     public void render(){
         boundShader.enable();
         for(RenderBatch batch : batches){
-            batch.render();
+            batch.render(handler);
         }
     }
 

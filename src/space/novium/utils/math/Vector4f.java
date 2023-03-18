@@ -48,4 +48,9 @@ public class Vector4f {
     public void setH(float h) {
         this.h = h;
     }
+
+    @Override
+    public String toString() {
+        return "Vector4f: (" + x + ", " + y + ", " + w + ", " + h + ")";
+    }
 }

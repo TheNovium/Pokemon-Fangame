@@ -58,6 +58,10 @@ public class Shader {
         glUniformMatrix4fv(getUniform(name), false, matrix.toFloatBuffer());
     }
 
+    public void setUniformIntArr(String name, int[] arr){
+        glUniform1iv(getUniform(name), arr);
+    }
+
     public void enable(){
         glUseProgram(ID);
     }

@@ -6,6 +6,7 @@ import space.novium.nebula.core.event.enums.EventType;
 import space.novium.nebula.core.resources.RegistryObject;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
+import space.novium.nebula.graphics.texture.TextureAtlasType;
 import space.novium.nebula.item.Item;
 import space.novium.utils.IOUtils;
 
@@ -28,7 +29,16 @@ public class ItemEventRegister implements IEventRegister<Item> {
         item.setRegistryName(loc);
         ResourceLocation dataLoc = new ResourceLocation(loc.getNamespace(), "item/" + loc.getPath() + ".json");
         JsonObject obj = IOUtils.loadJson(dataLoc);
-        //TODO add texture to texture atlas based off string information
+        if(obj.has("textures")){
+            JsonObject textures = obj.getAsJsonObject("textures");
+            int i = 0;
+            while(textures.has("layer" + i)){
+                String imgLoc = textures.get("layer" + i).getAsString();
+                ResourceLocation img = new ResourceLocation(loc.getNamespace(), imgLoc);
+                builder.loadTexture(img, loc, TextureAtlasType.ITEM);
+                i++;
+            }
+        }
         return false;
     }
 

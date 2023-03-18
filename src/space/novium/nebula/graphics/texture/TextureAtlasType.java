@@ -4,8 +4,8 @@ import static org.lwjgl.opengl.GL13.*;
 
 public enum TextureAtlasType {
     BACKGROUND("background", GL_TEXTURE0),
-    STATIC_IMAGE("static image", GL_TEXTURE1),
-    DYNAMIC_IMAGE("dynamic image", GL_TEXTURE2),
+    ITEM("items", GL_TEXTURE1),
+    TILE("tiles", GL_TEXTURE2),
     TEXT("text", GL_TEXTURE3),
     UI("user interface", GL_TEXTURE4),
     NONE("no atlas", GL_TEXTURE5);
@@ -27,10 +27,6 @@ public enum TextureAtlasType {
     }
 
     public int getTexId(){
-        return (glTexture - GL_TEXTURE0);
-    }
-
-    public int getTextureValue(){
         return glTexture - GL_TEXTURE0;
     }
 }

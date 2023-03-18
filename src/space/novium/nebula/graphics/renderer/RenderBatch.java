@@ -3,6 +3,7 @@ package space.novium.nebula.graphics.renderer;
 import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.graphics.shader.Shader;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
+import space.novium.nebula.graphics.texture.TextureAtlasType;
 import space.novium.utils.TextureUtils;
 import space.novium.utils.math.Vector2f;
 import space.novium.utils.math.Vector4f;
@@ -75,7 +76,7 @@ public class RenderBatch implements Comparable<RenderBatch> {
         glEnableVertexAttribArray(3);
     }
 
-    public void render(){
+    public void render(TextureAtlasHandler handler){
         boolean rebuffData = false;
         for(int i = 0; i < numSprites; i++){
             SpriteRenderer spr = sprites[i];
@@ -97,11 +98,17 @@ public class RenderBatch implements Comparable<RenderBatch> {
             glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
         }
 
+        for(TextureAtlasType type : TextureAtlasType.values()){
+            glActiveTexture(type.getGlTexture());
+            handler.getAtlas(type).getTexture().bind();
+        }
+
         Shader shader = Renderer.getBoundShader();
 
         shader.enable();
         shader.setUniformMat4("ortho_matrix", TextureUtils.ORTHO_MATRIX);
         shader.setUniformMat4("view_matrix", TextureUtils.ORTHO_MATRIX);
+        shader.setUniformIntArr("textures", new int[]{0, 1, 2, 3, 4, 5});
 
         glBindVertexArray(vao);
         glEnableVertexAttribArray(0);

@@ -34,6 +34,15 @@ public class TextureAtlasHandler {
         return spr;
     }
 
+    public Vector4f getDrawLocationForResourceLocation(ResourceLocation loc){
+        for(TextureAtlasType type : TextureAtlasType.values()){
+            if(atlases.get(type).hasResource(loc)){
+                return atlases.get(type).getRelativeImageLocation(loc);
+            }
+        }
+        return new Vector4f(0, 0, 1, 1);
+    }
+
     public static class Builder {
         private String id;
         private Map<TextureAtlasType, TextureAtlas.Builder> atlasBuilders;
