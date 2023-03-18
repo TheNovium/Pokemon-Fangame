@@ -14,7 +14,7 @@ public class GameFonts {
     public static final ResourceLocation BASE_FONT = new ResourceLocation("base_font");
     public static final ResourceLocation SYMBOLMON = new ResourceLocation("symbol_font");
 
-    public static final RegistryObject<FontRenderer> BASE_NORMAL = Registry.FONT_REGISTRY.register("base_white", () -> new FontRenderer(BASE_FONT, Color.WHITE, 72.0f, false));
+    public static final RegistryObject<FontRenderer> BASE_NORMAL = Registry.FONT_REGISTRY.register("base_white", () -> new FontRenderer(BASE_FONT, Color.WHITE, 128.0f, false));
     public static final RegistryObject<FontRenderer> SYMBOL_NORMAL = Registry.FONT_REGISTRY.register("symbol_white", () -> new FontRenderer(SYMBOLMON, Color.WHITE, 96.0f, false));
 
     @EventListener(event = EventType.FONT_REGISTRATION)
