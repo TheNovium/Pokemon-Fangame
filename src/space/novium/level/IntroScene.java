@@ -25,6 +25,7 @@ public class IntroScene extends Scene {
     @Override
     public void init(){
         Window.get().setTitle("Pokemon Space | Alpha 0.0.1");
+        new ImagePart(GameResourceLocations.WARNING_SYMBOL, new Vector2f(-0.94f, 0.56f), 0.16f, Renderer.HUD_Z + 1);
         new ImagePart(GameResourceLocations.PIXEL_BACKGROUND).setAlpha(0.5f);
         new ImagePart(GameResourceLocations.LIGHT_GREY_BANNER, new Vector2f(-1.0f, 0.1f), new Vector2f(2.0f, 0.8f), Renderer.HUD_Z).setAlpha(0.8f);
         new TextPart("Important! Please read.", new Vector2f(-0.9f, 0.75f), 1.8f, TextAlign.CENTER, GameFonts.BASE_LARGE).setColor(1.0f, 0.1f, 0.1f, 1.0f);
