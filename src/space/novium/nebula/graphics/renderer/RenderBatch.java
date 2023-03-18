@@ -15,10 +15,10 @@ public class RenderBatch implements Comparable<RenderBatch> {
     /**
      * Vertex array information
      * ----------
-     * Position         Color                           texture coordinates     texture id
-     * float, float     float, float, float, float      float, float            float
+     * Position                 Color                           texture coordinates     texture id
+     * float, float, float,     float, float, float, float      float, float            float
      * **/
-    private final int POSITION_SIZE = 2;
+    private final int POSITION_SIZE = 3;
     private final int COLOR_SIZE = 4;
     private final int TEX_COORD_SIZE = 2;
     private final int ID_SIZE = 1;
@@ -30,6 +30,7 @@ public class RenderBatch implements Comparable<RenderBatch> {
     private final int VERTEX_SIZE = POSITION_SIZE + COLOR_SIZE + TEX_COORD_SIZE + ID_SIZE;
     private final int VERTEX_SIZE_BYTES = VERTEX_SIZE * Float.BYTES;
 
+    public static final int MAX_Z = 64;
 
     private SpriteRenderer[] sprites;
     private int numSprites;
@@ -39,6 +40,7 @@ public class RenderBatch implements Comparable<RenderBatch> {
     private int vao, vbo;
     private int maxBatchSize;
     private int zIndex;
+    private float zDraw;
 
     public RenderBatch(int maxBatchSize, int zIndex){
         this.maxBatchSize = maxBatchSize;
@@ -49,6 +51,7 @@ public class RenderBatch implements Comparable<RenderBatch> {
         this.numSprites = 0;
         this.hasRoom = true;
         this.zIndex = zIndex;
+        this.zDraw = ((float) zIndex) / ((float) MAX_Z);
     }
 
     public void start(){
@@ -157,16 +160,17 @@ public class RenderBatch implements Comparable<RenderBatch> {
             Vector2f scale = spr.getGameObject().getTransform().getScale();
             vertices[offset] = pos.x + (scale.x * xAdd);
             vertices[offset + 1] = pos.y + (scale.y * yAdd);
+            vertices[offset + 2] = zDraw;
 
-            vertices[offset + 2] = color.getX();
-            vertices[offset + 3] = color.getY();
-            vertices[offset + 4] = color.getW();
-            vertices[offset + 5] = color.getH();
+            vertices[offset + 3] = color.getX();
+            vertices[offset + 4] = color.getY();
+            vertices[offset + 5] = color.getW();
+            vertices[offset + 6] = color.getH();
 
-            vertices[offset + 6] = texCoords[i * 2];
-            vertices[offset + 7] = texCoords[(i * 2) + 1];
+            vertices[offset + 7] = texCoords[i * 2];
+            vertices[offset + 8] = texCoords[(i * 2) + 1];
 
-            vertices[offset + 8] = spr.getGlId();
+            vertices[offset + 9] = spr.getGlId();
 
             offset += VERTEX_SIZE;
         }

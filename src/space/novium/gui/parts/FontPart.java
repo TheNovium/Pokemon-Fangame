@@ -96,7 +96,7 @@ public class FontPart{
                             ((float) glyph.width) / ((float) font.getTotalWidth()) * fullAtlasLoc.getW(),
                             fullAtlasLoc.getH()
                     ));
-                    GameObject gameObject = new GameObject(String.valueOf(c), new Transform(new Vector2f(drawX, drawY), new Vector2f(dispWidth, dispHeight), 64));
+                    GameObject gameObject = new GameObject(String.valueOf(c), new Transform(new Vector2f(drawX, drawY), new Vector2f(dispWidth, dispHeight), 63));
                     gameObject.addComponent(spr);
                     spriteRenderers.add(spr);
                     Renderer.get().add(gameObject);
