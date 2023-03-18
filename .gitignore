@@ -27,3 +27,11 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Images compiled at runtime ###
+/items.png
+/text.png
+/no atlas.png
+/background.png
+/tiles.png
+/user interface.png
