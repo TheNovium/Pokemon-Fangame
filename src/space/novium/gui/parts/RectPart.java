@@ -1,4 +1,4 @@
-package space.novium.gui.parts.enums;
+package space.novium.gui.parts;
 
 import space.novium.nebula.core.GameObject;
 import space.novium.nebula.core.components.SpriteRenderer;
