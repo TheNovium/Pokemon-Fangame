@@ -21,6 +21,9 @@ public class GameResourceLocations {
     public static final ResourceLocation LIGHT_GREATER_ARROW = registerUIComponent("light_arrow");
     public static final ResourceLocation LIGHT_GREY_BANNER = registerUIComponent("banner/light_grey");
 
+    //Dialog Boxes
+    public static final ResourceLocation DEFAULT_DIALOG = registerUIComponent("dialog/default");
+
     @EventListener(event = EventType.IMAGE_REGISTRATION)
     public static void registerImages(ResourceEventRegister register){
         for(ResourceLocation loc : BACKGROUND_RESOURCES){
