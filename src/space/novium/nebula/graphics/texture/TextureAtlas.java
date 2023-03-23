@@ -141,7 +141,7 @@ public class TextureAtlas {
                             height = 0;
                         }
                         height = Math.max(height, temp.getHeight());
-                        atlas.setLocation(rLoc, new Vector4i(x, y, width, height));
+                        atlas.setLocation(rLoc, new Vector4i(x, y, width, temp.getHeight()));
                         x += width;
                         imagesByShelf.add(rLoc);
                     }
