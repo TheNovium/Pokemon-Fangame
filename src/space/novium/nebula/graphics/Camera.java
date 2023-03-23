@@ -10,6 +10,10 @@ public class Camera {
     private Vector2f position;
     private Vector2f scale;
 
+    public Camera(){
+        this(new Vector2f());
+    }
+
     public Camera(Vector2f position){
         this.position = position;
         this.projectionMatrix = new Matrix4f();
