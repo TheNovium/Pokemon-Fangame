@@ -22,4 +22,8 @@ public class RectPart {
     public void setColor(float r, float g, float b, float a){
         spr.setColor(r, g, b, a);
     }
+
+    public void setAlpha(float a){
+        spr.setColor(spr.getColor().setH(a));
+    }
 }
