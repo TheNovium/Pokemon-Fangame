@@ -21,32 +21,36 @@ public class Vector4f {
         return x;
     }
 
-    public void setX(float x) {
+    public Vector4f setX(float x) {
         this.x = x;
+        return this;
     }
 
     public float getY() {
         return y;
     }
 
-    public void setY(float y) {
+    public Vector4f setY(float y) {
         this.y = y;
+        return this;
     }
 
     public float getW() {
         return w;
     }
 
-    public void setW(float w) {
+    public Vector4f setW(float w) {
         this.w = w;
+        return this;
     }
 
     public float getH() {
         return h;
     }
 
-    public void setH(float h) {
+    public Vector4f setH(float h) {
         this.h = h;
+        return this;
     }
 
     @Override
