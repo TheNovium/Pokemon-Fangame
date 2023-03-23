@@ -14,6 +14,7 @@ public class GameResourceLocations {
 
     //Locations of background images for stuff like menus
     public static final ResourceLocation PIXEL_BACKGROUND = registerBackground("intro");
+    public static final ResourceLocation PLANET = registerBackground("homepage");
 
     //Locations of UI elements
     public static final ResourceLocation WARNING_SYMBOL = registerUIComponent("symbols/warning");
