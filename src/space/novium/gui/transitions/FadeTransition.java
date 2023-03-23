@@ -82,7 +82,7 @@ public class FadeTransition implements ITransition {
                     finishFadeIn();
                 }
                 if(fadingOut){
-                    alpha = 1.0f - (float)(Math.log((timePassed + step) + 1) / Math.log(2));
+                    alpha = (float)(Math.log((timePassed + step) + 1) / Math.log(2));
                     finishFadeOut();
                 }
             }
