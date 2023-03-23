@@ -4,6 +4,7 @@ import space.novium.gui.Window;
 import space.novium.gui.parts.enums.TextAlign;
 import space.novium.nebula.core.GameObject;
 import space.novium.nebula.core.components.SpriteRenderer;
+import space.novium.nebula.core.resources.Registry;
 import space.novium.nebula.core.resources.RegistryObject;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.graphics.renderer.FontRenderer;
@@ -14,6 +15,7 @@ import space.novium.utils.math.Vector2f;
 import space.novium.utils.math.Vector2i;
 import space.novium.utils.math.Vector4f;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -111,5 +113,9 @@ public class TextPart {
         for(SpriteRenderer spr : spriteRenderers){
             spr.setColor(r, g, b, a);
         }
+    }
+
+    public void setColor(Vector4f vec){
+        setColor(vec.getX(), vec.getY(), vec.getW(), vec.getH());
     }
 }

@@ -89,11 +89,11 @@ public class FadeTransition implements ITransition {
             case EXPONENTIAL -> {
                 float timePassed = (float)(Math.log(alpha + 1) / Math.log(2));
                 if(fadingIn){
-                    alpha = (float)Math.pow(2, (alpha - step)) - 1.0f;
+                    alpha = (float)Math.pow(2, (timePassed - step)) - 1.0f;
                     finishFadeIn();
                 }
                 if(fadingOut){
-                    alpha = (float)Math.pow(2, (alpha + step)) - 1.0f;
+                    alpha = (float)Math.pow(2, (timePassed + step)) - 1.0f;
                     finishFadeOut();
                 }
             }
