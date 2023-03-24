@@ -62,6 +62,11 @@ public class FadeTransition implements ITransition {
     }
 
     @Override
+    public float getTime() {
+        return time;
+    }
+
+    @Override
     public void tick(float dt) {
         float step = dt / time;
         switch(transitionType){
