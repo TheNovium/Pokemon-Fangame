@@ -23,6 +23,10 @@ public class RectPart {
         spr.setColor(r, g, b, a);
     }
 
+    public void setColor(Vector4f clr){
+        setColor(clr.getX(), clr.getY(), clr.getW(), clr.getH());
+    }
+
     public void setAlpha(float a){
         spr.setColor(spr.getColor().setH(a));
     }
