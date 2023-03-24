@@ -1,4 +1,4 @@
-package space.novium.gui.parts.enums;
+package space.novium.nebula.graphics.gui.parts.enums;
 
 public enum TextAlign {
     LEFT,

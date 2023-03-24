@@ -90,6 +90,12 @@ public class Renderer {
         }
     }
 
+    public void remove(SpriteRenderer spr){
+        for(RenderBatch batch : batches){
+            batch.remove(spr);
+        }
+    }
+
     public static void setShader(Shader shader){
         boundShader = shader;
     }

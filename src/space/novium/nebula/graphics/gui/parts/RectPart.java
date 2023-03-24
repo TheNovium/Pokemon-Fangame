@@ -1,4 +1,4 @@
-package space.novium.gui.parts;
+package space.novium.nebula.graphics.gui.parts;
 
 import space.novium.nebula.core.GameObject;
 import space.novium.nebula.core.components.SpriteRenderer;
@@ -21,6 +21,10 @@ public class RectPart {
 
     public void setColor(float r, float g, float b, float a){
         spr.setColor(r, g, b, a);
+    }
+
+    public void setColor(Vector4f clr){
+        setColor(clr.getX(), clr.getY(), clr.getW(), clr.getH());
     }
 
     public void setAlpha(float a){

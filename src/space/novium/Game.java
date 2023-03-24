@@ -1,6 +1,6 @@
 package space.novium;
 
-import space.novium.gui.Window;
+import space.novium.nebula.graphics.gui.Window;
 import space.novium.nebula.core.annotations.AnnotationHandler;
 
 public class Game {

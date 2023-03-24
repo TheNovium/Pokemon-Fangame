@@ -1,7 +1,7 @@
-package space.novium.gui.transitions;
+package space.novium.nebula.graphics.gui.transitions;
 
-import space.novium.gui.parts.RectPart;
-import space.novium.gui.transitions.enums.TransitionType;
+import space.novium.nebula.graphics.gui.parts.RectPart;
+import space.novium.nebula.graphics.gui.transitions.enums.TransitionType;
 import space.novium.nebula.graphics.renderer.Renderer;
 import space.novium.utils.math.Vector2f;
 
@@ -59,6 +59,11 @@ public class FadeTransition implements ITransition {
 
     public boolean isFadingOut(){
         return fadingOut;
+    }
+
+    @Override
+    public float getTime() {
+        return time;
     }
 
     @Override

@@ -13,6 +13,7 @@ public class FontRenderer {
     private final BufferedImage texImage;
     private final Map<Character, Glyph> glyphs;
     private int totalWidth;
+    private String location;
 
     public FontRenderer(ResourceLocation loc, Color color, float size, boolean antiAlias){
         this.glyphs = new HashMap<>();
@@ -116,6 +117,22 @@ public class FontRenderer {
             }
         }
         return height;
+    }
+
+    public String getRegistryName(){
+        return location;
+    }
+
+    public void setRegistryName(String str){
+        if(getRegistryName() != null){
+            System.err.println("Unable to set registry name to " + str + " because font is already registered as " + location);
+        } else {
+            this.location = str;
+        }
+    }
+
+    public void setRegistryName(ResourceLocation loc){
+        setRegistryName(loc.toString());
     }
 
     public Glyph getGlyph(char c){

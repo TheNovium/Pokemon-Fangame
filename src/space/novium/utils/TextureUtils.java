@@ -1,6 +1,6 @@
 package space.novium.utils;
 
-import space.novium.gui.Window;
+import space.novium.nebula.graphics.gui.Window;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.utils.math.Matrix4f;
 import space.novium.utils.math.Vector4f;

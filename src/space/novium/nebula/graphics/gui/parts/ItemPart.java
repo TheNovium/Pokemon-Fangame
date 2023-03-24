@@ -1,4 +1,4 @@
-package space.novium.gui.parts;
+package space.novium.nebula.graphics.gui.parts;
 
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.utils.math.Vector2f;

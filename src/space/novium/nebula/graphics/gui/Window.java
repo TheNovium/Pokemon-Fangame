@@ -1,4 +1,4 @@
-package space.novium.gui;
+package space.novium.nebula.graphics.gui;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWErrorCallback;

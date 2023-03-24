@@ -3,6 +3,8 @@ package space.novium.nebula.core.resources;
 import space.novium.Game;
 import space.novium.utils.StringUtils;
 
+import java.util.Objects;
+
 public class ResourceLocation implements Comparable<ResourceLocation> {
     public static final char NAMESPACE_SEPARATOR = ':';
     public static final String DEFAULT_NAMESPACE = Game.ID;
@@ -87,7 +89,20 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof ResourceLocation loc){
+            return compareTo(loc) == 0;
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return getNamespace() + NAMESPACE_SEPARATOR + getPath();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(namespace, path);
     }
 }

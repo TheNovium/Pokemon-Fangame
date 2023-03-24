@@ -41,4 +41,9 @@ public class Vector4i {
     public void setH(int h) {
         this.h = h;
     }
+
+    @Override
+    public String toString(){
+        return "(" + x + ", " + y + ", " + ", " + w + ", " + h + ")";
+    }
 }
