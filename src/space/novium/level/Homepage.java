@@ -16,8 +16,6 @@ import space.novium.nebula.graphics.renderer.Renderer;
 import space.novium.nebula.graphics.renderer.Transform;
 import space.novium.utils.math.Vector2f;
 
-import java.awt.print.Pageable;
-
 public class Homepage extends Scene{
     private ITransition fade;
     private IMenu menu;
