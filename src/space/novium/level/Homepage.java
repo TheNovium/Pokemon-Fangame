@@ -4,6 +4,7 @@ import space.novium.nebula.graphics.gui.Theme;
 import space.novium.nebula.graphics.gui.parts.ButtonPart;
 import space.novium.nebula.graphics.gui.parts.ImagePart;
 import space.novium.nebula.graphics.gui.parts.VerticalMenu;
+import space.novium.nebula.graphics.gui.parts.actions.FadeToSceneAction;
 import space.novium.nebula.graphics.gui.parts.actions.SetSceneAction;
 import space.novium.nebula.graphics.gui.parts.interfaces.IMenu;
 import space.novium.nebula.graphics.gui.transitions.FadeTransition;
@@ -31,7 +32,7 @@ public class Homepage extends Scene{
         new ImagePart(GameResourceLocations.PLANET);
         menu = new VerticalMenu(
             new Transform(
-                    new Vector2f(0.4f, -0.1f),
+                    new Vector2f(0.4f, -0.4f),
                     Renderer.GUI_Z
             )
         ).add(
@@ -49,7 +50,7 @@ public class Homepage extends Scene{
         ).add(
                 new ButtonPart()
                         .onClick(
-                                () -> new SetSceneAction(FunctionTestPage::new)
+                                () -> new FadeToSceneAction(fade, FunctionTestPage::new)
                         ).withText("Test Page")
                         .withFont(theme.getSecondaryFont().get())
         ).withSelectImage(GameResourceLocations.LIGHT_GREATER_ARROW);

@@ -61,6 +61,7 @@ public class VerticalMenu implements IMenu {
             }
             if(KeyInput.isPressed(KeyInput.SELECT)){
                 parts.get(activeIndex).click();
+                disable();
             }
         }
     }
@@ -69,10 +70,9 @@ public class VerticalMenu implements IMenu {
     public VerticalMenu add(IMenuPart part) {
         float yPos = transform.getPosition().getY();
         for(int i = 0; i < parts.size(); i++){
-            yPos -= part.getHeight();
+            yPos -= parts.get(i).getHeight();
             yPos -= 0.01f;
         }
-        System.out.println(yPos);
         part.setPosition(new Vector2f(transform.getPosition().getX(), yPos));
         parts.add(part);
         parts.get(parts.size() - 1).setInactive();
