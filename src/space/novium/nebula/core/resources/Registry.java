@@ -77,4 +77,8 @@ public class Registry<T> {
     public Supplier<T> get(ResourceLocation loc){
         return containsKey(loc) ? locationMap.get(loc) : null;
     }
+
+    public Supplier<T> get(String loc){
+        return get(new ResourceLocation(loc));
+    }
 }

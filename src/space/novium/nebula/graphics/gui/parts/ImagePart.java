@@ -1,6 +1,6 @@
-package space.novium.gui.parts;
+package space.novium.nebula.graphics.gui.parts;
 
-import space.novium.gui.Window;
+import space.novium.nebula.graphics.gui.Window;
 import space.novium.nebula.core.GameObject;
 import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.core.resources.ResourceLocation;

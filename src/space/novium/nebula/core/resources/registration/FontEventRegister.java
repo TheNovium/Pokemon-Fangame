@@ -2,6 +2,7 @@ package space.novium.nebula.core.resources.registration;
 
 import space.novium.nebula.core.annotations.AnnotationHandler;
 import space.novium.nebula.core.event.enums.EventType;
+import space.novium.nebula.core.resources.Registry;
 import space.novium.nebula.core.resources.RegistryObject;
 import space.novium.nebula.graphics.renderer.FontRenderer;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
@@ -22,6 +23,7 @@ public class FontEventRegister implements IEventRegister<FontRenderer> {
     @Override
     public boolean register(RegistryObject<FontRenderer> value){
         FontRenderer renderer = value.get();
+        renderer.setRegistryName(value.getKey().getLocation());
         if(renderer.getTexImage() != null){
             builder.loadTexture(value.getKey().getLocation(), TextureAtlasType.TEXT, renderer.getTexImage());
             return true;

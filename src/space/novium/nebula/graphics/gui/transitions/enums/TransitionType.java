@@ -1,4 +1,4 @@
-package space.novium.gui.transitions.enums;
+package space.novium.nebula.graphics.gui.transitions.enums;
 
 public enum TransitionType {
     LINEAR,

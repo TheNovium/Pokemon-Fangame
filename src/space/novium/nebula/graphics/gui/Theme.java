@@ -1,4 +1,4 @@
-package space.novium.gui;
+package space.novium.nebula.graphics.gui;
 
 
 import space.novium.level.registration.GameFonts;
@@ -7,8 +7,6 @@ import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.core.resources.registration.GameResourceLocations;
 import space.novium.nebula.graphics.renderer.FontRenderer;
 import space.novium.utils.math.Vector4f;
-
-import java.awt.*;
 
 public class Theme {
     private Vector4f primaryColor;

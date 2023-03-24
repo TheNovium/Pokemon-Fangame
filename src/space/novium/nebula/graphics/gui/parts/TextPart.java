@@ -1,10 +1,10 @@
-package space.novium.gui.parts;
+package space.novium.nebula.graphics.gui.parts;
 
-import space.novium.gui.Window;
-import space.novium.gui.parts.enums.TextAlign;
+import space.novium.nebula.core.resources.Registry;
+import space.novium.nebula.graphics.gui.Window;
+import space.novium.nebula.graphics.gui.parts.enums.TextAlign;
 import space.novium.nebula.core.GameObject;
 import space.novium.nebula.core.components.SpriteRenderer;
-import space.novium.nebula.core.resources.Registry;
 import space.novium.nebula.core.resources.RegistryObject;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.graphics.renderer.FontRenderer;
@@ -15,7 +15,6 @@ import space.novium.utils.math.Vector2f;
 import space.novium.utils.math.Vector2i;
 import space.novium.utils.math.Vector4f;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +37,7 @@ public class TextPart {
         this.alignment = alignment;
         this.font = font.get();
         loadMessage(chars);
-        updateRender(font.getKey().getLocation());
+        updateRender();
     }
 
     private void loadMessage(CharSequence chars){
@@ -65,17 +64,18 @@ public class TextPart {
         lines.add(str.toString());
     }
 
-    private void setMessage(CharSequence message){
+    public void setMessage(CharSequence message){
         this.message = message;
         this.lines = new ArrayList<>();
         loadMessage(message);
+        updateRender();
     }
 
-    private void updateRender(ResourceLocation loc){
+    private void updateRender(){
         Vector2i windowDimensions = Window.get().getWindowSize();
         float textHeight = ((float) font.getHeight("A") / windowDimensions.getY());
         float drawY = position.y - (textHeight * lines.size());
-        Vector4f fullAtlasLoc = Renderer.get().getHandler().getDrawLocationForResourceLocation(loc);
+        Vector4f fullAtlasLoc = Renderer.get().getHandler().getDrawLocationForResourceLocation(new ResourceLocation(font.getRegistryName()));
         for(int i = 0; i < lines.size(); i++){
             CharSequence s = lines.get(i);
             float wordWidth = ((float) font.getWidth(s)) / windowDimensions.getX();

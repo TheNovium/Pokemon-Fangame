@@ -19,7 +19,7 @@ public class TextureAtlas {
     public static final ResourceLocation NO_TEXTURE = new ResourceLocation("no_texture");
 
     private final TextureAtlasType type;
-    //Need to eventually add the code to get the image based off entity data
+    //Need to eventually add the code to get the image based off entity data -- May be solved with hash function?
     private final Map<ResourceLocation, Vector4i> imageLocs;
     private Texture texture;
 
@@ -95,7 +95,7 @@ public class TextureAtlas {
         }
 
         public TextureAtlas build(){
-            BufferedImage atImg = null;
+            BufferedImage atImg;
             switch(atlas.getType()){
                 case TEXT -> {
                     int maxWidth = 0;
