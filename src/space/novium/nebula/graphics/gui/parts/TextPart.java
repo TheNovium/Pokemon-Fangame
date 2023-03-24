@@ -24,6 +24,7 @@ public class TextPart {
     private Vector2f position;
     private TextAlign alignment;
     private float width;
+    private float height;
     private List<CharSequence> lines;
     private CharSequence message;
     private List<SpriteRenderer> spriteRenderers;
@@ -34,6 +35,7 @@ public class TextPart {
         this.lines = new ArrayList<>();
         this.position = position;
         this.width = width;
+        this.height = 0;
         this.alignment = alignment;
         this.font = font.get();
         loadMessage(chars);
@@ -71,7 +73,17 @@ public class TextPart {
         updateRender();
     }
 
+    public void setFont(FontRenderer font){
+        this.font = font;
+        this.lines = new ArrayList<>();
+        loadMessage(message);
+        updateRender();
+    }
+
     private void updateRender(){
+        for(SpriteRenderer spr : spriteRenderers){
+            Renderer.get().remove(spr);
+        }
         Vector2i windowDimensions = Window.get().getWindowSize();
         float textHeight = ((float) font.getHeight("A") / windowDimensions.getY());
         float drawY = position.y - (textHeight * lines.size());
@@ -107,6 +119,7 @@ public class TextPart {
             }
             drawY -= textHeight;
         }
+        height = textHeight * (float)lines.size();
     }
 
     public void setColor(float r, float g, float b, float a){
@@ -115,7 +128,24 @@ public class TextPart {
         }
     }
 
+    public void setPosition(Vector2f position){
+        this.position = position;
+        updateRender();
+    }
+
     public void setColor(Vector4f vec){
         setColor(vec.getX(), vec.getY(), vec.getW(), vec.getH());
+    }
+
+    public Vector2f getPosition(){
+        return position;
+    }
+
+    public float getWidth(){
+        return width;
+    }
+
+    public float getHeight(){
+        return height;
     }
 }

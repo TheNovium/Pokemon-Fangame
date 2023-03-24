@@ -46,6 +46,14 @@ public class Transform {
         position.add(df);
     }
 
+    public void setPosition(Vector2f pos){
+        this.position = pos;
+    }
+
+    public void setPosition(float x, float y){
+        this.position = new Vector2f(x, y);
+    }
+
     public void scale(float dx, float dy){
         scale.mult(dx, dy);
     }
