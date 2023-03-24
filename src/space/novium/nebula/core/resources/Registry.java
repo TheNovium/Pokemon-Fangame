@@ -3,6 +3,7 @@ package space.novium.nebula.core.resources;
 import space.novium.Game;
 import space.novium.nebula.graphics.renderer.FontRenderer;
 import space.novium.nebula.item.Item;
+import space.novium.nebula.world.entity.Entity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,9 +15,11 @@ public class Registry<T> {
     public static final ResourceLocation ROOT_REGISTRY_NAME = new ResourceLocation("root");
     public static final ResourceKey<Registry<Item>> ITEMS = createRegistryKey("items");
     public static final ResourceKey<Registry<FontRenderer>> FONTS = createRegistryKey("fonts");
+    public static final ResourceKey<Registry<Entity>> ENTITIES = createRegistryKey("entities");
 
     public static final Registry<Item> ITEM_REGISTRY = new Registry<>(ITEMS);
     public static final Registry<FontRenderer> FONT_REGISTRY = new Registry<>(FONTS);
+    public static final Registry<Entity> ENTITY_REGISTRY = new Registry<>(ENTITIES);
 
     private static <T> ResourceKey<Registry<T>> createRegistryKey(String key){
         return ResourceKey.createRegistryKey(new ResourceLocation(key));
