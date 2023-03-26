@@ -33,7 +33,7 @@ public class IOUtils {
 
     public static JsonObject loadJson(ResourceLocation loc){
         try {
-            JsonReader reader = new JsonReader(loadFileReader(loc));
+            JsonReader reader = new JsonReader(loadFileReader(loc, "data", ".json"));
             return new Gson().fromJson(reader, JsonObject.class);
         } catch(Exception e){
             System.err.println("Unable to load json object from " + loc + ", replacing with empty json object");
@@ -65,7 +65,11 @@ public class IOUtils {
     }
 
     private static FileReader loadFileReader(ResourceLocation loc, String sub) throws FileNotFoundException {
-        return new FileReader(ROOT + loc.getNamespace() + "/" + sub + "/" + loc.getPath());
+        return loadFileReader(loc, sub, "");
+    }
+
+    private static FileReader loadFileReader(ResourceLocation loc, String sub, String fileType) throws FileNotFoundException {
+        return new FileReader(ROOT + loc.getNamespace() + "/" + sub + "/" + loc.getPath() + fileType);
     }
 
     private static FileInputStream loadFileInputStream(ResourceLocation loc, String filetype) throws FileNotFoundException {

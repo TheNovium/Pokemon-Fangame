@@ -27,7 +27,7 @@ public class ItemEventRegister implements IEventRegister<Item> {
         ResourceLocation loc = value.getKey().getLocation();
         Item item = value.get();
         item.setRegistryName(loc);
-        ResourceLocation dataLoc = new ResourceLocation(loc.getNamespace(), "item/" + loc.getPath() + ".json");
+        ResourceLocation dataLoc = new ResourceLocation(loc.getNamespace(), "item/" + loc.getPath());
         JsonObject obj = IOUtils.loadJson(dataLoc);
         if(obj.has("textures")){
             JsonObject textures = obj.getAsJsonObject("textures");

@@ -9,13 +9,20 @@ public class Tile {
     private TilePos position;
     protected ResourceLocation tileType;
 
-    public Tile(TilePos position, ResourceLocation tileType){
+    public Tile(){
+        this(new TilePos(0, 0));
+    }
+
+    public Tile(TilePos position){
         this.position = position;
-        this.tileType = tileType;
     }
 
     public TilePos getPosition() {
         return position;
+    }
+
+    public void setPosition(int x, int y){
+        position.setPosition(x, y);
     }
 
     public ResourceLocation getTileType() {

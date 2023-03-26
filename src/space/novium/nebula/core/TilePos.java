@@ -2,7 +2,7 @@ package space.novium.nebula.core;
 
 import space.novium.utils.math.Vector2f;
 
-public class TilePos {
+public class TilePos implements Comparable<TilePos> {
     private int x, y;
 
     public static final TilePos ZERO = new TilePos(0, 0);
@@ -31,5 +31,23 @@ public class TilePos {
 
     public int getY() {
         return y;
+    }
+
+    public void setPosition(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public int compareTo(TilePos o) {
+        return x - o.getX() + y - o.getY();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof TilePos other){
+            return x == other.getX() && y == other.getY();
+        }
+        return false;
     }
 }
