@@ -114,7 +114,11 @@ public class RenderBatch implements Comparable<RenderBatch> {
 
         shader.enable();
         shader.setUniformMat4("ortho_matrix", camera.getProjectionMatrix());
-        shader.setUniformMat4("view_matrix", camera.getViewMatrix());
+        if(!Renderer.STATIC_ELEMENTS.inRange(getZIndex())){
+            shader.setUniformMat4("view_matrix", camera.getViewMatrix());
+        } else {
+            shader.setUniformMat4("view_matrix", camera.getStaticViewMatrix());
+        }
         shader.setUniformIntArr("textures", new int[]{0, 1, 2, 3, 4, 5, 6});
 
         glBindVertexArray(vao);

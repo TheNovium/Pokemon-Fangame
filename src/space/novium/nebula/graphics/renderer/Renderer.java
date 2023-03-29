@@ -10,6 +10,7 @@ import space.novium.nebula.core.resources.registration.TileEventRegister;
 import space.novium.nebula.graphics.shader.Shader;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
 import space.novium.nebula.world.tiles.Tile;
+import space.novium.utils.math.IntRange;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,6 +30,8 @@ public class Renderer {
     public static final int GUI_Z = 32;
     public static final int TEXT_Z = 62;
     public static final int OVERLAY_Z = 63;
+
+    public static final IntRange STATIC_ELEMENTS = new IntRange(HUD_Z, OVERLAY_Z);
 
     private Renderer(){
         this.batches = Collections.synchronizedList(new ArrayList<>());

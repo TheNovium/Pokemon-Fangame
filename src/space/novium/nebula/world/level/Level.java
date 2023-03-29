@@ -1,6 +1,8 @@
 package space.novium.nebula.world.level;
 
+import space.novium.nebula.KeyInput;
 import space.novium.nebula.core.resources.ResourceLocation;
+import space.novium.nebula.graphics.Camera;
 import space.novium.nebula.world.ChunkLoader;
 import space.novium.nebula.world.entity.Player;
 import space.novium.nebula.world.tiles.Tile;
@@ -51,7 +53,20 @@ public class Level implements Runnable {
     }
 
     public void tick(){
-
+        Camera camera = scene.getCamera();
+        float maxSpeed = player.getSpeed();
+        if(KeyInput.isHeld(KeyInput.MOVE_UP)){
+            camera.move(0.0f, maxSpeed * -1.0f);
+        }
+        if(KeyInput.isHeld(KeyInput.MOVE_DOWN)){
+            camera.move(0.0f, maxSpeed);
+        }
+        if(KeyInput.isHeld(KeyInput.MOVE_RIGHT)){
+            camera.move(maxSpeed * -1.0f, 0.0f);
+        }
+        if(KeyInput.isHeld(KeyInput.MOVE_LEFT)){
+            camera.move(maxSpeed, 0.0f);
+        }
     }
 
     @Override

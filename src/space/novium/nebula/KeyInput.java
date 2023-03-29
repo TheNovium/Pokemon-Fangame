@@ -21,6 +21,12 @@ public class KeyInput {
     public static int HUD_ACTION_LEFT = GLFW_KEY_Q;
     public static int HUD_ACTION_RIGHT = GLFW_KEY_E;
 
+    //Movement Keys
+    public static int MOVE_UP = GLFW_KEY_W;
+    public static int MOVE_LEFT = GLFW_KEY_A;
+    public static int MOVE_DOWN = GLFW_KEY_S;
+    public static int MOVE_RIGHT = GLFW_KEY_D;
+
     private KeyInput(){}
 
     public static KeyInput get(){

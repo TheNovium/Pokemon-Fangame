@@ -90,6 +90,11 @@ public class FunctionTestPage extends Scene implements ILevelScene {
     }
 
     @Override
+    public Camera getCamera() {
+        return camera;
+    }
+
+    @Override
     public void cleanup() {
         level.cleanup();
     }

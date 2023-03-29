@@ -38,6 +38,10 @@ public class Camera {
         return viewMatrix;
     }
 
+    public Matrix4f getStaticViewMatrix(){
+        return Matrix4f.identity();
+    }
+
     public void move(float dx, float dy){
         position.x += dx;
         position.y += dy;
