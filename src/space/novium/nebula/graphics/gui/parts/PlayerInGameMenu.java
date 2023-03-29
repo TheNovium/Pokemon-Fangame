@@ -6,6 +6,7 @@ import space.novium.nebula.core.resources.registration.GameResourceLocations;
 import space.novium.nebula.graphics.gui.Window;
 import space.novium.nebula.graphics.renderer.Renderer;
 import space.novium.nebula.world.entity.Player;
+import space.novium.utils.ColorUtils;
 import space.novium.utils.math.Vector2f;
 import space.novium.utils.math.Vector4f;
 
@@ -21,10 +22,10 @@ public class PlayerInGameMenu {
         tabs.add(new Tab("Party", new Vector4f(0.5f, 0.1f, 0.35f, 1.0f), GameResourceLocations.POKEBALL_SYMBOL));
         tabs.add(new Tab("Test", new Vector4f(0.1f, 0.7f, 0.25f, 1.0f), GameResourceLocations.BOOK_SYMBOL));
         activeIndex = 0;
-        tabs.get(activeIndex).enable();
-        for(int i = 1; i < tabs.size(); i++){
-            tabs.get(i).disable();
+        for (Tab tab : tabs) {
+            tab.disable();
         }
+        tabs.get(activeIndex).enable();
     }
 
     public void tick(){
@@ -75,10 +76,13 @@ public class PlayerInGameMenu {
                             .setColor(color)
             );
             hideParts.add(
-                    new RectPart(new Vector2f(xPosition - pixelWidth * 2.0f, -0.7f - pixelHeight), new Vector2f(-20.0f, pixelHeight), Renderer.HUD_Z + 1)
-                            .setColor(0.0f, 0.0f, 0.0f, 1.0f)
+                    new RectPart(new Vector2f(-1.0f, -0.7f - pixelHeight), new Vector2f(xPosition + 1.0f - pixelWidth * 2.0f, pixelHeight), Renderer.HUD_Z + 1)
+                            .setColor(ColorUtils.BLACK)
             );
-            System.out.println(xPosition);
+            hideParts.add(
+                    new RectPart(new Vector2f(xPosition + pixelWidth * 15.0f, -0.7f - pixelHeight), new Vector2f(2.0f - (xPosition + 1.0f + pixelWidth * 15.0f), pixelHeight), Renderer.HUD_Z + 1)
+                            .setColor(ColorUtils.BLACK)
+            );
 
             //Dim parts are set to a slightly darker color when the menu position is out of focus
             this.dimParts = new ArrayList<>();
@@ -93,40 +97,39 @@ public class PlayerInGameMenu {
             this.alwaysVisible = new ArrayList<>();
             alwaysVisible.add(
                     new RectPart(new Vector2f(xPosition, -0.7f + pixelHeight * 12.0f), new Vector2f(pixelWidth, pixelHeight), Renderer.HUD_Z + 1)
-                            .setColor(0.0f, 0.0f, 0.0f, 1.0f)
+                            .setColor(ColorUtils.BLACK)
             );
             alwaysVisible.add(
                     new RectPart(new Vector2f(xPosition + pixelWidth * 12.0f, -0.7f + pixelHeight * 12.0f), new Vector2f(pixelWidth, pixelHeight), Renderer.HUD_Z + 1)
-                            .setColor(0.0f, 0.0f, 0.0f, 1.0f)
+                            .setColor(ColorUtils.BLACK)
             );
             alwaysVisible.add(
                     new RectPart(new Vector2f(xPosition + pixelWidth, -0.7f + pixelHeight * 13.0f), new Vector2f(pixelWidth * 11.0f, pixelHeight), Renderer.HUD_Z + 1)
-                            .setColor(0.0f, 0.0f, 0.0f, 1.0f)
+                            .setColor(ColorUtils.BLACK)
             );
             alwaysVisible.add(
                     new RectPart(new Vector2f(xPosition - pixelWidth, -0.7f +pixelHeight), new Vector2f(pixelWidth, pixelHeight * 11.0f), Renderer.HUD_Z + 1)
-                            .setColor(0.0f, 0.0f, 0.0f, 1.0f)
+                            .setColor(ColorUtils.BLACK)
             );
             alwaysVisible.add(
                     new RectPart(new Vector2f(xPosition + pixelWidth * 13.0f, -0.7f + pixelHeight), new Vector2f(pixelWidth, pixelHeight * 11.0f), Renderer.HUD_Z + 1)
-                            .setColor(0.0f, 0.0f, 0.0f, 1.0f)
+                            .setColor(ColorUtils.BLACK)
             );
             alwaysVisible.add(
                     new RectPart(new Vector2f(xPosition - pixelWidth * 2.0f, -0.7f), new Vector2f(pixelWidth, pixelHeight), Renderer.HUD_Z + 1)
-                            .setColor(0.0f, 0.0f, 0.0f, 1.0f)
+                            .setColor(ColorUtils.BLACK)
             );
             alwaysVisible.add(
                     new RectPart(new Vector2f(xPosition + pixelWidth * 14.0f,  -0.7f), new Vector2f(pixelWidth, pixelHeight), Renderer.HUD_Z + 1)
-                            .setColor(0.0f, 0.0f, 0.0f, 1.0f)
+                            .setColor(ColorUtils.BLACK)
             );
             tabs++;
-            enable();
         }
 
         public void enable(){
             this.enabled = true;
             for(RectPart hidden : hideParts){
-                hidden.setAlpha(1.0f);
+                hidden.translate(2.0f, 0.0f);
             }
             for(RectPart dim : dimParts){
                 dim.setColor(color);
@@ -137,7 +140,7 @@ public class PlayerInGameMenu {
         public void disable(){
             this.enabled = false;
             for(RectPart hidden : hideParts){
-                hidden.setAlpha(0.0f);
+                hidden.translate(-2.0f, 0.0f);
             }
             for(RectPart dim : dimParts){
                 dim.setColor(iconColor);

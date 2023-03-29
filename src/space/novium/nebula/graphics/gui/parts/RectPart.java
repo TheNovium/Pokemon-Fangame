@@ -10,11 +10,12 @@ import space.novium.utils.math.Vector4f;
 
 public class RectPart {
     private SpriteRenderer spr;
+    private GameObject obj;
 
     public RectPart(Vector2f loc, Vector2f size, int z){
         spr = new SpriteRenderer(TextureAtlasType.BLANK);
         spr.addDrawLocation(new Vector4f(0, 0, 1, 1));
-        GameObject obj = new GameObject("rect:" + loc.x + "," + loc.y + "," + size.x + "," + size.y, new Transform(loc, size, z));
+        obj = new GameObject("rect:" + loc.x + "," + loc.y + "," + size.x + "," + size.y, new Transform(loc, size, z));
         obj.addComponent(spr);
         Renderer.get().add(obj);
     }
@@ -30,6 +31,16 @@ public class RectPart {
 
     public RectPart setAlpha(float a){
         spr.setColor(spr.getColor().setH(a));
+        return this;
+    }
+
+    public RectPart translate(float dx, float dy){
+        obj.translate(dx, dy);
+        return this;
+    }
+
+    public RectPart setPos(float x, float y){
+        obj.setPosition(x, y);
         return this;
     }
 }

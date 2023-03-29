@@ -1,5 +1,6 @@
 package space.novium.nebula.core;
 
+import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.graphics.renderer.Transform;
 
 import java.util.ArrayList;
@@ -59,6 +60,23 @@ public class GameObject {
     public void start(){
         for(Component component : components){
             component.start();
+        }
+    }
+
+    public void translate(float dx, float dy){
+        transform.move(dx, dy);
+        setSprDirty();
+    }
+
+    public void setPosition(float x, float y){
+        transform.setPosition(x, y);
+        setSprDirty();
+    }
+
+    private void setSprDirty(){
+        if(getComponent(SpriteRenderer.class) != null){
+            SpriteRenderer spr = getComponent(SpriteRenderer.class);
+            spr.setDirty();
         }
     }
 
