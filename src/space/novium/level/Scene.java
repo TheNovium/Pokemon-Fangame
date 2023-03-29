@@ -16,4 +16,6 @@ public abstract class Scene {
     public Camera getCamera(){
         return camera;
     }
+
+    public abstract void cleanup();
 }

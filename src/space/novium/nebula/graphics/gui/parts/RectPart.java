@@ -19,15 +19,17 @@ public class RectPart {
         Renderer.get().add(obj);
     }
 
-    public void setColor(float r, float g, float b, float a){
+    public RectPart setColor(float r, float g, float b, float a){
         spr.setColor(r, g, b, a);
+        return this;
     }
 
-    public void setColor(Vector4f clr){
-        setColor(clr.getX(), clr.getY(), clr.getW(), clr.getH());
+    public RectPart setColor(Vector4f clr){
+        return setColor(clr.getX(), clr.getY(), clr.getW(), clr.getH());
     }
 
-    public void setAlpha(float a){
+    public RectPart setAlpha(float a){
         spr.setColor(spr.getColor().setH(a));
+        return this;
     }
 }

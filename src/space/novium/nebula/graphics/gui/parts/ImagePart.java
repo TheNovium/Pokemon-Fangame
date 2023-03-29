@@ -7,6 +7,7 @@ import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.graphics.renderer.Renderer;
 import space.novium.nebula.graphics.renderer.Transform;
 import space.novium.utils.math.Vector2f;
+import space.novium.utils.math.Vector4f;
 
 public class ImagePart {
     private GameObject gameObject;
@@ -33,5 +34,9 @@ public class ImagePart {
 
     public void setColor(float r, float g, float b, float a){
         spr.setColor(r, g, b, a);
+    }
+
+    public void setColor(Vector4f color){
+        spr.setColor(color);
     }
 }

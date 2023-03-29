@@ -15,6 +15,10 @@ public class KeyInput {
     public static int SELECT_UP = GLFW_KEY_UP; //Menu navigation towards +y
     public static int SELECT = GLFW_KEY_ENTER; //Menu select current objet
 
+    //HUD keys
+    public static int HUD_LEFT = GLFW_KEY_Z;
+    public static int HUD_RIGHT = GLFW_KEY_C;
+
     private KeyInput(){}
 
     public static KeyInput get(){

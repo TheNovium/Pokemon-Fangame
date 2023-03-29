@@ -67,4 +67,9 @@ public class Homepage extends Scene{
     public void render(){
 
     }
+
+    @Override
+    public void cleanup() {
+        //Nothing to cleanup
+    }
 }

@@ -1,0 +1,22 @@
+{
+  "region": "Test Chunk",
+  "define": {
+    "tile": {
+      "b": "space:red_brick"
+    }
+  },
+  "tiles": [
+    [ ["bbbbbbbbbbbb"],
+      ["bbbbbbbbbbbb"],
+      ["bbbbbbbbbbbb"],
+      ["bbbbbbbbbbbb"],
+      ["bbbbbbbbbbbb"],
+      ["bbbbbbbbbbbb"],
+      ["bbbbbbbbbbbb"],
+      ["bbbbbbbbbbbb"]]
+  ],
+  "spawn": {
+    "x": 6,
+    "y": 4
+  }
+}

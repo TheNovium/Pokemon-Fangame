@@ -54,4 +54,10 @@ public class IntroScene extends Scene {
             fade.fadeOut();
         }
     }
+
+    @Override
+    public void cleanup() {
+        //Nothing to clean up
+        return;
+    }
 }

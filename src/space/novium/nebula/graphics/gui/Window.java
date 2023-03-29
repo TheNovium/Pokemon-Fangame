@@ -4,6 +4,7 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import space.novium.level.FunctionTestPage;
 import space.novium.level.IntroScene;
 import space.novium.level.Scene;
 import space.novium.nebula.KeyInput;
@@ -32,6 +33,9 @@ public class Window implements Runnable {
     private Window(){}
 
     public static void setScene(Supplier<Scene> newScene){
+        if(currentScene != null){
+            currentScene.cleanup();
+        }
         currentScene = newScene.get();
         Renderer.get().clearRenderer();
         currentScene.init();
@@ -70,6 +74,7 @@ public class Window implements Runnable {
                 running = false;
             }
         }
+        currentScene.cleanup();
         glfwFreeCallbacks(window);
         glfwDestroyWindow(window);
         glfwTerminate();
@@ -81,6 +86,14 @@ public class Window implements Runnable {
 
     public int getHeight(){
         return windowSize.getY();
+    }
+
+    public float getSinglePixelHeight(){
+        return 2.0f / (((float) getHeight()) / 8.0f);
+    }
+
+    public float getSinglePixelWidth(){
+        return 2.0f / (((float) getWidth()) / 8.0f);
     }
 
     public float getAspectRatio(){
@@ -145,7 +158,8 @@ public class Window implements Runnable {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        setScene(IntroScene::new);
+        //Change this to the scene to test it
+        setScene(FunctionTestPage::new);
 
         running = true;
     }

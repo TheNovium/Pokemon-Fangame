@@ -53,8 +53,25 @@ public class Vector4f {
         return this;
     }
 
+    public Vector4f absolute(){
+        this.x = Math.abs(x);
+        this.y = Math.abs(y);
+        this.w = Math.abs(w);
+        this.h = Math.abs(h);
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Vector4f: (" + x + ", " + y + ", " + w + ", " + h + ")";
+    }
+
+    public static Vector4f subtract(Vector4f initial, Vector4f subtract){
+        return new Vector4f(
+                initial.getX() - subtract.getX(),
+                initial.getY() - subtract.getY(),
+                initial.getW() - subtract.getW(),
+                initial.getH() - subtract.getH()
+        );
     }
 }
