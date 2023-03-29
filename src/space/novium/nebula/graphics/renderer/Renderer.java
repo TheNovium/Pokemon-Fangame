@@ -6,8 +6,10 @@ import space.novium.nebula.core.components.SpriteRenderer;
 import space.novium.nebula.core.resources.registration.FontEventRegister;
 import space.novium.nebula.core.resources.registration.ItemEventRegister;
 import space.novium.nebula.core.resources.registration.ResourceEventRegister;
+import space.novium.nebula.core.resources.registration.TileEventRegister;
 import space.novium.nebula.graphics.shader.Shader;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
+import space.novium.nebula.world.tiles.Tile;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,6 +47,8 @@ public class Renderer {
         fer.registerAll();
         ResourceEventRegister rer = new ResourceEventRegister(builder);
         rer.registerAll();
+        TileEventRegister ter = new TileEventRegister(builder);
+        ter.registerAll();
 
         handler = builder.build();
     }

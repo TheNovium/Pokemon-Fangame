@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Tile {
     private TilePos position;
     protected ResourceLocation tileType;
+    protected String registryName;
 
     public Tile(){
         this(new TilePos(0, 0));
@@ -44,5 +45,22 @@ public class Tile {
             return tile.getPosition().compareTo(getPosition()) == 0 &&
                     tile.getTileType().equals(getTileType());
         }
+        return false;
+    }
+
+    public void setRegistryName(ResourceLocation loc){
+        setRegistryName(loc.toString());
+    }
+
+    public void setRegistryName(String name){
+        if(getRegistryName() != null){
+            System.err.println("Unable to set registry name to " + name + " because tile is already registered as "+ getRegistryName());
+        } else {
+            this.registryName = name;
+        }
+    }
+
+    public String getRegistryName(){
+        return registryName;
     }
 }

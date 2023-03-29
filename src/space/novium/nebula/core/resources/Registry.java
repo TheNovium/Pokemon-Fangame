@@ -65,6 +65,9 @@ public class Registry<T> {
 
     public T getValue(ResourceLocation loc){
         Supplier<T> temp = locationMap.getOrDefault(loc, null);
+        if(temp == null){
+            System.out.println("Failed to load from " + loc.toString());
+        }
         return temp != null ? temp.get() : null;
     }
 
