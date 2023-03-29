@@ -55,6 +55,7 @@ public class SpriteRenderer extends Component {
         if(sprite.getFrame(f) != null){
             frame = f;
         }
+        setDirty();
     }
 
     public void addDrawLocation(Vector4f drawLoc){

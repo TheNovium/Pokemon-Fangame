@@ -3,10 +3,10 @@ package space.novium.nebula.world.enums;
 import space.novium.nebula.core.TilePos;
 
 public enum Direction {
-    NORTH(0, 1),
-    EAST(1, 0),
-    SOUTH(0, -1),
-    WEST(-1, 0);
+    NORTH(0, -1),
+    EAST(-1, 0),
+    SOUTH(0, 1),
+    WEST(1, 0);
 
     private final int dirX;
     private final int dirY;

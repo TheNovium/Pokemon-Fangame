@@ -26,6 +26,12 @@ public class GameResourceLocations {
     //Dialog Boxes
     public static final ResourceLocation DEFAULT_DIALOG = registerUIComponent("dialog/default");
 
+    //Temporary player files
+    public static final ResourceLocation PLAYER_UP = new ResourceLocation("entity/player_up");
+    public static final ResourceLocation PLAYER_RIGHT = new ResourceLocation("entity/player_right");
+    public static final ResourceLocation PLAYER_DOWN = new ResourceLocation("entity/player_down");
+    public static final ResourceLocation PLAYER_LEFT = new ResourceLocation("entity/player_left");
+
     @EventListener(event = EventType.IMAGE_REGISTRATION)
     public static void registerImages(ResourceEventRegister register){
         for(ResourceLocation loc : BACKGROUND_RESOURCES){
@@ -34,6 +40,10 @@ public class GameResourceLocations {
         for(ResourceLocation loc : UI_RESOURCES){
             register.register(loc, TextureAtlasType.UI);
         }
+        register.register(PLAYER_UP, TextureAtlasType.ENTITY);
+        register.register(PLAYER_RIGHT, TextureAtlasType.ENTITY);
+        register.register(PLAYER_DOWN, TextureAtlasType.ENTITY);
+        register.register(PLAYER_LEFT, TextureAtlasType.ENTITY);
     }
 
     private static ResourceLocation registerBackground(String loc){

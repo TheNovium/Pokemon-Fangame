@@ -55,19 +55,8 @@ public class Level implements Runnable {
 
     public void tick(){
         Camera camera = scene.getCamera();
+        player.tick(this);
         float maxSpeed = player.getSpeed();
-        if(KeyInput.isHeld(KeyInput.MOVE_UP)){
-            player.move(0.0f, maxSpeed * -1.0f);
-        }
-        if(KeyInput.isHeld(KeyInput.MOVE_DOWN)){
-            player.move(0.0f, maxSpeed);
-        }
-        if(KeyInput.isHeld(KeyInput.MOVE_RIGHT)){
-            player.move(maxSpeed * -1.0f, 0.0f);
-        }
-        if(KeyInput.isHeld(KeyInput.MOVE_LEFT)){
-            player.move(maxSpeed, 0.0f);
-        }
         Vector2f cameraPos = camera.getPosition();
         Vector2f playerPos = player.getPosition();
         float dx = playerPos.getX() - cameraPos.getX();

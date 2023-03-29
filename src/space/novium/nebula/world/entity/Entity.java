@@ -51,6 +51,10 @@ public class Entity {
         this.position.add(dx, dy);
     }
 
+    public void setFacing(Direction dir){
+        this.facing = dir;
+    }
+
     public static class Properties {
         Vector2f position = new Vector2f();
         Direction facing = Direction.NORTH;

@@ -9,7 +9,8 @@ public enum TextureAtlasType {
     TILE("tiles", GL_TEXTURE3),
     TEXT("text", GL_TEXTURE4),
     UI("user interface", GL_TEXTURE5),
-    NONE("no atlas", GL_TEXTURE6);
+    ENTITY("entities", GL_TEXTURE6),
+    NONE("no atlas", GL_TEXTURE7);
 
     private final String description;
     private final int glTexture;
