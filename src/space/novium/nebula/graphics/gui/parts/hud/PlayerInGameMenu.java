@@ -1,9 +1,13 @@
-package space.novium.nebula.graphics.gui.parts;
+package space.novium.nebula.graphics.gui.parts.hud;
 
 import space.novium.nebula.KeyInput;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.core.resources.registration.GameResourceLocations;
 import space.novium.nebula.graphics.gui.Window;
+import space.novium.nebula.graphics.gui.parts.ImagePart;
+import space.novium.nebula.graphics.gui.parts.RectPart;
+import space.novium.nebula.graphics.gui.parts.hud.tabs.PokemonTab;
+import space.novium.nebula.graphics.gui.parts.hud.tabs.QuestTab;
 import space.novium.nebula.graphics.renderer.Renderer;
 import space.novium.nebula.world.entity.Player;
 import space.novium.utils.ColorUtils;
@@ -19,8 +23,8 @@ public class PlayerInGameMenu {
 
     public PlayerInGameMenu(Player player){
         tabs = new ArrayList<>();
-        tabs.add(new Tab("Party", new Vector4f(0.5f, 0.1f, 0.35f, 1.0f), GameResourceLocations.POKEBALL_SYMBOL));
-        tabs.add(new Tab("Test", new Vector4f(0.1f, 0.7f, 0.25f, 1.0f), GameResourceLocations.BOOK_SYMBOL));
+        tabs.add(new Tab("Party", new Vector4f(0.5f, 0.1f, 0.35f, 1.0f), GameResourceLocations.POKEBALL_SYMBOL, new PokemonTab(player)));
+        tabs.add(new Tab("Quest", new Vector4f(0.3f, 0.3f, 0.4f, 1.0f), GameResourceLocations.BOOK_SYMBOL, new QuestTab(player)));
         activeIndex = 0;
         for (Tab tab : tabs) {
             tab.disable();
@@ -40,6 +44,12 @@ public class PlayerInGameMenu {
             if(activeIndex < 0) activeIndex = tabs.size() - 1;
             tabs.get(activeIndex).enable();
         }
+        if(KeyInput.isPressed(KeyInput.HUD_ACTION_LEFT)){
+            tabs.get(activeIndex).leftAction();
+        }
+        if(KeyInput.isPressed(KeyInput.HUD_ACTION_RIGHT)){
+            tabs.get(activeIndex).rightAction();
+        }
     }
 
     private class Tab {
@@ -55,8 +65,9 @@ public class PlayerInGameMenu {
         private List<RectPart> hideParts;
         private List<RectPart> dimParts;
         private List<RectPart> alwaysVisible;
+        private ITabAction tabAction;
 
-        public Tab(String description, Vector4f color, ResourceLocation icon){
+        public Tab(String description, Vector4f color, ResourceLocation icon, ITabAction action){
             Window window = Window.get();
             float pixelHeight = window.getSinglePixelHeight();
             float pixelWidth = window.getSinglePixelWidth();
@@ -69,6 +80,7 @@ public class PlayerInGameMenu {
             this.icon.setColor(iconColor);
             this.position = xPosition;
             this.enabled = false;
+            this.tabAction = action;
             //These parts are set to invisible when the tab goes out of focus
             this.hideParts = new ArrayList<>();
             hideParts.add(
@@ -135,6 +147,7 @@ public class PlayerInGameMenu {
                 dim.setColor(color);
             }
             icon.setColor(iconColor);
+            tabAction.enable();
         }
 
         public void disable(){
@@ -146,6 +159,15 @@ public class PlayerInGameMenu {
                 dim.setColor(iconColor);
             }
             icon.setColor(disableColor);
+            tabAction.disable();
+        }
+
+        public void rightAction(){
+            tabAction.rightButton();
+        }
+
+        public void leftAction(){
+            tabAction.leftButton();
         }
     }
 }

@@ -3,14 +3,10 @@ package space.novium.level;
 import com.google.gson.JsonObject;
 import space.novium.level.registration.GameFonts;
 import space.novium.nebula.core.resources.ResourceLocation;
-import space.novium.nebula.core.resources.registration.GameResourceLocations;
 import space.novium.nebula.graphics.Camera;
-import space.novium.nebula.graphics.gui.Window;
-import space.novium.nebula.graphics.gui.parts.ImagePart;
-import space.novium.nebula.graphics.gui.parts.PlayerInGameMenu;
+import space.novium.nebula.graphics.gui.parts.hud.PlayerInGameMenu;
 import space.novium.nebula.graphics.gui.parts.TextPart;
 import space.novium.nebula.graphics.gui.parts.enums.TextAlign;
-import space.novium.nebula.world.entity.Player;
 import space.novium.nebula.world.level.ILevelScene;
 import space.novium.nebula.world.level.Level;
 import space.novium.utils.IOUtils;
@@ -26,7 +22,6 @@ public class FunctionTestPage extends Scene implements ILevelScene {
     private TextPart region;
     private float textTimer = 0.0f;
     private Timer timer;
-    private Player player;
     private PlayerInGameMenu playerMenu;
 
     public FunctionTestPage(){
@@ -42,10 +37,8 @@ public class FunctionTestPage extends Scene implements ILevelScene {
         }
         region = new TextPart("", new Vector2f(-0.98f, 0.96f), 1.96f, TextAlign.LEFT, GameFonts.BASE_SMALL);
         timer = new Timer();
-        player = new Player();
-        playerMenu = new PlayerInGameMenu(player);
+        playerMenu = new PlayerInGameMenu(level.getPlayer());
         setRegion(level.getRegion());
-        new ImagePart(GameResourceLocations.PLANET);
     }
 
     @Override

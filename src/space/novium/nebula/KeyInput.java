@@ -18,6 +18,8 @@ public class KeyInput {
     //HUD keys
     public static int HUD_LEFT = GLFW_KEY_Z;
     public static int HUD_RIGHT = GLFW_KEY_C;
+    public static int HUD_ACTION_LEFT = GLFW_KEY_Q;
+    public static int HUD_ACTION_RIGHT = GLFW_KEY_E;
 
     private KeyInput(){}
 

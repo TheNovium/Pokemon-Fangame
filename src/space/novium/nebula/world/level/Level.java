@@ -1,13 +1,19 @@
 package space.novium.nebula.world.level;
 
+import space.novium.nebula.core.resources.ResourceLocation;
+import space.novium.nebula.world.ChunkLoader;
+import space.novium.nebula.world.entity.Player;
+import space.novium.nebula.world.tiles.Tile;
+
 import java.util.Random;
 import java.util.UUID;
 
 public class Level implements Runnable {
     private final Thread thread; //This thread will not render anything, it'll only be used for calculations
-    private boolean running;
     private final UUID levelUUID = UUID.randomUUID();
     private String region = "";
+    private ChunkLoader loader;
+    private Player player;
 
     private final ILevelScene scene;
 
@@ -17,11 +23,21 @@ public class Level implements Runnable {
         this.scene = scene;
         this.thread = new Thread(this, levelUUID.toString());
         this.thread.start();
-        running = true;
+        loader = new ChunkLoader(new ResourceLocation("chunks/test"), scene, this);
+        player = new Player();
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 
     public void setRegion(String region) {
         this.region = region;
+        scene.setRegion(region);
+    }
+
+    public void addTile(Tile tile){
+
     }
 
     public String getRegion(){
