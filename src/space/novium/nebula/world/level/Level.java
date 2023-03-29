@@ -5,6 +5,8 @@ import space.novium.nebula.world.ChunkLoader;
 import space.novium.nebula.world.entity.Player;
 import space.novium.nebula.world.tiles.Tile;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -15,6 +17,8 @@ public class Level implements Runnable {
     private ChunkLoader loader;
     private Player player;
 
+    private List<Tile> tileList;
+
     private final ILevelScene scene;
 
     public final Random random = new Random();
@@ -23,8 +27,9 @@ public class Level implements Runnable {
         this.scene = scene;
         this.thread = new Thread(this, levelUUID.toString());
         this.thread.start();
-        loader = new ChunkLoader(new ResourceLocation("chunks/test"), scene, this);
         player = new Player();
+        tileList = new ArrayList<>();
+        loader = new ChunkLoader(new ResourceLocation("chunks/test"), scene, this);
     }
 
     public Player getPlayer(){
@@ -37,7 +42,8 @@ public class Level implements Runnable {
     }
 
     public void addTile(Tile tile){
-
+        tileList.add(tile);
+        scene.addTile(tile);
     }
 
     public String getRegion(){

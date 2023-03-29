@@ -38,7 +38,9 @@ public class Chunk {
             for(int y = 0; y < tileJson.size(); y++){
                 String info = tileJson.get(y).getAsString();
                 for(int x = 0; x < info.length(); x++){
-                    Tile tile = Registry.TILE_REGISTRY.getValue(definitions.get(String.valueOf(info.charAt(x))));
+                    ResourceLocation tileLoc = definitions.get(String.valueOf(info.charAt(x)));
+                    Tile tile = Registry.TILE_REGISTRY.get(tileLoc).get();
+                    tile.setRegistryName(tileLoc);
                     tile.setPosition(x, y);
                     level.addTile(tile);
                 }

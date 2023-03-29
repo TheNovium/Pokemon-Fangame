@@ -50,4 +50,9 @@ public class TilePos implements Comparable<TilePos> {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return getX() + ", " + getY();
+    }
 }

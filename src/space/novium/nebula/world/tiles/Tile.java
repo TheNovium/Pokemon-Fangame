@@ -63,4 +63,15 @@ public class Tile {
     public String getRegistryName(){
         return registryName;
     }
+
+    public Tile clone() {
+        Tile ret = new Tile(getPosition());
+        ret.setRegistryName(getRegistryName());
+        return ret;
+    }
+
+    @Override
+    public String toString() {
+        return getRegistryName() + "@(" + getPosition().toString() + ")";
+    }
 }
