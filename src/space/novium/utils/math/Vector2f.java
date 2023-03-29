@@ -49,4 +49,21 @@ public class Vector2f {
         this.x *= dx;
         this.y *= dy;
     }
+
+    public float getDifference(Vector2f other){
+        return (float)Math.sqrt(Math.pow(getX() - other.getX(), 2) + Math.pow(getY() - other.getY(), 2));
+    }
+
+    public Vector2f getNormalVector(){
+        Vector2f ret = new Vector2f();
+        float total = (float)Math.sqrt(Math.pow(getX(), 2) + Math.pow(getY(), 2));
+        ret.setX(getX() / total);
+        ret.setY(getY() / total);
+        return ret;
+    }
+
+    @Override
+    public String toString() {
+        return "Vector2f@" + getX() + "," + getY();
+    }
 }

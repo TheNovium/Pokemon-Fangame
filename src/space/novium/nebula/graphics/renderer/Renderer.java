@@ -26,10 +26,11 @@ public class Renderer {
     //These are the standards as to the locations of where to draw things. While these are suggestions, the renderer is built with these values in mind
     public static final int BACKGROUND_Z = 0;
     public static final int WORLD_START_Z = 1;
-    public static final int HUD_Z = 16;
-    public static final int GUI_Z = 32;
-    public static final int TEXT_Z = 62;
-    public static final int OVERLAY_Z = 63;
+    public static final int HUD_Z = 32;
+    public static final int GUI_Z = 64;
+    public static final int TEXT_Z = 126;
+    public static final int OVERLAY_Z = TEXT_Z + 1;
+    public static final int MAX_Z = OVERLAY_Z + 1;
 
     public static final IntRange STATIC_ELEMENTS = new IntRange(HUD_Z, OVERLAY_Z);
 

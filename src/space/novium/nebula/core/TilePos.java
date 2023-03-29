@@ -25,6 +25,8 @@ public class TilePos implements Comparable<TilePos> {
         this(pos.x(), pos.y());
     }
 
+
+
     public int getX() {
         return x;
     }

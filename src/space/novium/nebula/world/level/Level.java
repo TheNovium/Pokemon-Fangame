@@ -6,6 +6,7 @@ import space.novium.nebula.graphics.Camera;
 import space.novium.nebula.world.ChunkLoader;
 import space.novium.nebula.world.entity.Player;
 import space.novium.nebula.world.tiles.Tile;
+import space.novium.utils.math.Vector2f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,17 +57,32 @@ public class Level implements Runnable {
         Camera camera = scene.getCamera();
         float maxSpeed = player.getSpeed();
         if(KeyInput.isHeld(KeyInput.MOVE_UP)){
-            camera.move(0.0f, maxSpeed * -1.0f);
+            player.move(0.0f, maxSpeed * -1.0f);
         }
         if(KeyInput.isHeld(KeyInput.MOVE_DOWN)){
-            camera.move(0.0f, maxSpeed);
+            player.move(0.0f, maxSpeed);
         }
         if(KeyInput.isHeld(KeyInput.MOVE_RIGHT)){
-            camera.move(maxSpeed * -1.0f, 0.0f);
+            player.move(maxSpeed * -1.0f, 0.0f);
         }
         if(KeyInput.isHeld(KeyInput.MOVE_LEFT)){
-            camera.move(maxSpeed, 0.0f);
+            player.move(maxSpeed, 0.0f);
         }
+        Vector2f cameraPos = camera.getPosition();
+        Vector2f playerPos = player.getPosition();
+        float dx = playerPos.getX() - cameraPos.getX();
+        if(dx != 0.0f){
+            dx /= Math.abs(dx);
+            dx *= maxSpeed;
+        }
+        float dy = playerPos.getY() - cameraPos.getY();
+        if(dy != 0.0f){
+            dy /= Math.abs(dy);
+            dy *= maxSpeed;
+        }
+        float dp = cameraPos.getDifference(playerPos); //Eventually I'll use this to do a fancy camera
+
+        camera.move(dx, dy);
     }
 
     @Override

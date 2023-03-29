@@ -52,6 +52,14 @@ public class Camera {
         position.y = y;
     }
 
+    public void setPosition(Vector2f vec){
+        this.position = vec;
+    }
+
+    public Vector2f getPosition(){
+        return position;
+    }
+
     public void scale(float ds){
         scale.x += ds;
         scale.y += ds;

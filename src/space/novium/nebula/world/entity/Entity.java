@@ -39,8 +39,16 @@ public class Entity {
         return facing;
     }
 
+    public Vector2f getPosition(){
+        return position;
+    }
+
     private void setSpeed(float speed){
         this.speed = speed;
+    }
+
+    public void move(float dx, float dy){
+        this.position.add(dx, dy);
     }
 
     public static class Properties {

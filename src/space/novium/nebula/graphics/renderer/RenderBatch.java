@@ -31,7 +31,6 @@ public class RenderBatch implements Comparable<RenderBatch> {
     private final int VERTEX_SIZE = POSITION_SIZE + COLOR_SIZE + TEX_COORD_SIZE + ID_SIZE;
     private final int VERTEX_SIZE_BYTES = VERTEX_SIZE * Float.BYTES;
 
-    public static final int MAX_Z = 64;
 
     private SpriteRenderer[] sprites;
     private int numSprites;
@@ -52,7 +51,7 @@ public class RenderBatch implements Comparable<RenderBatch> {
         this.numSprites = 0;
         this.hasRoom = true;
         this.zIndex = zIndex;
-        this.zDraw = ((float) zIndex) / ((float) MAX_Z);
+        this.zDraw = ((float) zIndex) / ((float) Renderer.MAX_Z);
     }
 
     public void start(){

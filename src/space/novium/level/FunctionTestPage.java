@@ -85,7 +85,7 @@ public class FunctionTestPage extends Scene implements ILevelScene {
                 new Vector2f(
                         ((float)pos.getX()) / 6.0f - 1.0f,
                         ((float)pos.getY()) / 4.0f - 1.0f
-                ), 1.0f / 6.0f, Renderer.WORLD_START_Z);
+                ), 1.01f / 6.0f, Renderer.WORLD_START_Z);
         images.add(part);
     }
 
