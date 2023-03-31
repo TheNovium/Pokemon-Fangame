@@ -33,23 +33,31 @@ public class Player extends Entity {
     @Override
     public void tick(Level level) {
         if(KeyInput.isHeld(KeyInput.MOVE_UP)){
-            setFacing(Direction.NORTH);
-            spr.setFrame(0);
+            if(getFacing() != Direction.NORTH){
+                setFacing(Direction.NORTH);
+                spr.setFrame(0);
+            }
             move(0.0f, getSpeed() * getFacing().getDirY());
         }
         if(KeyInput.isHeld(KeyInput.MOVE_RIGHT)){
-            setFacing(Direction.EAST);
-            spr.setFrame(1);
+            if(getFacing() != Direction.EAST){
+                setFacing(Direction.EAST);
+                spr.setFrame(1);
+            }
             move(getSpeed() * getFacing().getDirX(), 0.0f);
         }
         if(KeyInput.isHeld(KeyInput.MOVE_DOWN)){
-            setFacing(Direction.SOUTH);
-            spr.setFrame(2);
+            if(getFacing() != Direction.SOUTH){
+                setFacing(Direction.SOUTH);
+                spr.setFrame(2);
+            }
             move(0.0f, getSpeed() * getFacing().getDirY());
         }
         if(KeyInput.isHeld(KeyInput.MOVE_LEFT)){
-            setFacing(Direction.WEST);
-            spr.setFrame(3);
+            if(getFacing() != Direction.WEST){
+                setFacing(Direction.WEST);
+                spr.setFrame(3);
+            }
             move(getSpeed() * getFacing().getDirX(), 0.0f);
         }
     }
