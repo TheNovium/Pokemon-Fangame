@@ -33,16 +33,19 @@ public class Chunk {
 
             }
         }
-        if(chunkInfo.has("tiles")){
-            JsonArray tileJson = chunkInfo.get("tiles").getAsJsonArray();
-            for(int y = 0; y < tileJson.size(); y++){
-                String info = tileJson.get(y).getAsString();
-                for(int x = 0; x < info.length(); x++){
-                    ResourceLocation tileLoc = definitions.get(String.valueOf(info.charAt(x)));
-                    Tile tile = Registry.TILE_REGISTRY.get(tileLoc).get();
-                    tile.setRegistryName(tileLoc);
-                    tile.setPosition(x, y);
-                    level.addTile(tile);
+        if(chunkInfo.has("tiles")) {
+            JsonArray layers = chunkInfo.getAsJsonArray("tiles");
+            for(int z = 0; z < layers.size(); z++){
+                JsonArray layer = layers.get(z).getAsJsonArray();
+                for(int y = 0; y < layer.size(); y++){
+                    String row = layer.get(y).getAsString();
+                    for(int x = 0; x < row.length(); x++){
+                        ResourceLocation tileLoc = definitions.get(String.valueOf(row.charAt(x)));
+                        Tile tile = Registry.TILE_REGISTRY.getValue(tileLoc);
+                        tile.setRegistryName(tileLoc);
+                        tile.setPosition(x, y);
+                        level.addTile(tile, z);
+                    }
                 }
             }
         }

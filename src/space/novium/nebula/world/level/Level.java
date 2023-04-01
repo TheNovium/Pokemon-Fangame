@@ -44,9 +44,9 @@ public class Level implements Runnable {
         scene.setRegion(region);
     }
 
-    public void addTile(Tile tile){
+    public void addTile(Tile tile, int z){
         tileList.add(tile);
-        scene.addTile(tile);
+        scene.addTile(tile, z);
     }
 
     public String getRegion(){

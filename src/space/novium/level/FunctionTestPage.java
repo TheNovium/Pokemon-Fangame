@@ -79,13 +79,13 @@ public class FunctionTestPage extends Scene implements ILevelScene {
     }
 
     @Override
-    public void addTile(Tile tile) {
+    public void addTile(Tile tile, int z) {
         TilePos pos = tile.getPosition();
         ImagePart part = new ImagePart(new ResourceLocation(tile.getRegistryName()),
                 new Vector2f(
                         ((float)pos.getX()) / 6.0f - 1.0f,
                         ((float)pos.getY()) / 4.0f - 1.0f
-                ), 1.01f / 6.0f, Renderer.WORLD_START_Z);
+                ), 1.01f / 6.0f, Renderer.WORLD_START_Z + z);
         images.add(part);
     }
 

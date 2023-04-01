@@ -6,7 +6,7 @@ import space.novium.nebula.world.tiles.Tile;
 public interface ILevelScene {
     void setRegion(String string);
 
-    void addTile(Tile tile);
+    void addTile(Tile tile, int z);
 
     Camera getCamera();
 }
