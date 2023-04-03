@@ -18,7 +18,8 @@ public class Player extends Entity {
     private final GameObject obj;
 
     public Player(){
-        super(new Entity.Properties());
+        super(new Entity.Properties()
+                .setHitBox(0.0625f, 0.0625f, 0.875f, 0.875f));
         TextureAtlasHandler handler = Renderer.get().getHandler();
         spr = new SpriteRenderer(TextureAtlasType.ENTITY);
         spr.addDrawLocation(handler.getDrawLocationForResourceLocation(GameResourceLocations.PLAYER_UP));
@@ -37,28 +38,34 @@ public class Player extends Entity {
                 setFacing(Direction.NORTH);
                 spr.setFrame(0);
             }
-            move(0.0f, getSpeed() * getFacing().getDirY());
+            level.move(this, Direction.NORTH);
+            //move(0.0f, getSpeed() * getFacing().getDirY());
         }
         if(KeyInput.isHeld(KeyInput.MOVE_RIGHT)){
             if(getFacing() != Direction.EAST){
                 setFacing(Direction.EAST);
                 spr.setFrame(1);
             }
-            move(getSpeed() * getFacing().getDirX(), 0.0f);
+            level.move(this, Direction.EAST);
+            //move(getSpeed() * getFacing().getDirX(), 0.0f);
         }
         if(KeyInput.isHeld(KeyInput.MOVE_DOWN)){
             if(getFacing() != Direction.SOUTH){
                 setFacing(Direction.SOUTH);
                 spr.setFrame(2);
             }
-            move(0.0f, getSpeed() * getFacing().getDirY());
+            level.move(this, Direction.SOUTH);
+            //move(0.0f, getSpeed() * getFacing().getDirY());
         }
         if(KeyInput.isHeld(KeyInput.MOVE_LEFT)){
             if(getFacing() != Direction.WEST){
                 setFacing(Direction.WEST);
                 spr.setFrame(3);
             }
-            move(getSpeed() * getFacing().getDirX(), 0.0f);
+            level.move(this, Direction.WEST);
+            //move(getSpeed() * getFacing().getDirX(), 0.0f);
         }
     }
+
+
 }

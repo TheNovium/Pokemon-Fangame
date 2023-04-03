@@ -4,6 +4,8 @@ import space.novium.nebula.core.TilePos;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.world.entity.Player;
 import space.novium.nebula.world.level.Level;
+import space.novium.utils.math.Vector2f;
+import space.novium.utils.math.Vector4f;
 
 import java.util.Objects;
 
@@ -22,6 +24,10 @@ public class Tile {
 
     public TilePos getPosition() {
         return position;
+    }
+
+    public Vector2f getAbsolutePosition(){
+        return new Vector2f(((float) position.getX()) / 8.0f - 1.0f, ((float) position.getY()) / 6.0f - 1.0f);
     }
 
     public void setPosition(int x, int y){
@@ -62,6 +68,14 @@ public class Tile {
 
     public String getRegistryName(){
         return registryName;
+    }
+
+    public boolean collide(){
+        return false;
+    }
+
+    public Vector4f getHitBox(){
+        return new Vector4f();
     }
 
     public Tile clone() {

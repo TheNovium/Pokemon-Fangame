@@ -2,7 +2,8 @@
   "region": "Test Chunk",
   "define": {
     "tile": {
-      "b": "space:red_brick"
+      "b": "space:red_brick",
+      "r": "space:radiation_barrel"
     }
   },
   "tiles": [
@@ -13,7 +14,15 @@
        ["bbbbbbbbbbbb"],
        ["bbbbbbbbbbbb"],
        ["bbbbbbbbbbbb"],
-       ["bbbbbbbbbbbb"]]
+       ["bbbbbbbbbbbb"]],
+      [["            "],
+       ["            "],
+       ["            "],
+       ["            "],
+       ["            "],
+       ["            "],
+       ["            "],
+       ["r           "]]
   ],
   "spawn": {
     "x": 6,

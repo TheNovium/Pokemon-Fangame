@@ -4,7 +4,9 @@ import space.novium.nebula.KeyInput;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.graphics.Camera;
 import space.novium.nebula.world.ChunkLoader;
+import space.novium.nebula.world.entity.Entity;
 import space.novium.nebula.world.entity.Player;
+import space.novium.nebula.world.enums.Direction;
 import space.novium.nebula.world.tiles.Tile;
 import space.novium.utils.math.Vector2f;
 
@@ -47,6 +49,10 @@ public class Level implements Runnable {
     public void addTile(Tile tile, int z){
         tileList.add(tile);
         scene.addTile(tile, z);
+    }
+
+    public void move(Entity entity, Direction dir){
+        loader.move(entity, dir);
     }
 
     public String getRegion(){

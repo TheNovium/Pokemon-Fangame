@@ -5,6 +5,7 @@ import space.novium.nebula.core.event.enums.EventType;
 import space.novium.nebula.core.resources.Registry;
 import space.novium.nebula.core.resources.RegistryObject;
 import space.novium.nebula.core.resources.registration.IEventRegister;
+import space.novium.nebula.world.tiles.RadiationBarrel;
 import space.novium.nebula.world.tiles.Tile;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class GameTiles {
     private static final List<RegistryObject<Tile>> TILES = new ArrayList<>();
 
     public static final RegistryObject<Tile> RED_BRICK = register("red_brick", Tile::new);
+    public static final RegistryObject<Tile> RADIATION_BARREL = register("radiation_barrel", RadiationBarrel::new);
 
     @EventListener(event = EventType.TILE_REGISTRATION)
     public static void registerTiles(IEventRegister<Tile> register){

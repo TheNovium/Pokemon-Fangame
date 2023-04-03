@@ -1,5 +1,6 @@
 package space.novium.nebula.core;
 
+import space.novium.nebula.world.enums.Direction;
 import space.novium.utils.math.Vector2f;
 
 public class TilePos implements Comparable<TilePos> {
@@ -33,6 +34,14 @@ public class TilePos implements Comparable<TilePos> {
 
     public int getY() {
         return y;
+    }
+
+    public TilePos getDirection(Direction dir){
+        return getDirection(dir, 1);
+    }
+
+    public TilePos getDirection(Direction dir, int length){
+        return new TilePos(getX() + dir.getDirX() * length, getY() + dir.getDirY() * length);
     }
 
     public void setPosition(int x, int y){
