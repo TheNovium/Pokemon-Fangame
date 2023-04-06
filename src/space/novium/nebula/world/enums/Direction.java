@@ -25,39 +25,11 @@ public enum Direction {
     }
 
     public Direction getClockwise(){
-        switch (this){
-            case EAST -> {
-                return SOUTH;
-            }
-            case SOUTH -> {
-                return WEST;
-            }
-            case WEST -> {
-                return NORTH;
-            }
-            case NORTH -> {
-                return EAST;
-            }
-        }
-        return this;
+        return values()[(ordinal() + 1) % 4];
     }
 
     public Direction getCounterClockwise(){
-        switch(this){
-            case NORTH -> {
-                return WEST;
-            }
-            case EAST -> {
-                return NORTH;
-            }
-            case SOUTH -> {
-                return EAST;
-            }
-            case WEST -> {
-                return SOUTH;
-            }
-        }
-        return this;
+        return values()[(ordinal() + 3) % 4];
     }
 
     public TilePos getDirection(TilePos pos){
