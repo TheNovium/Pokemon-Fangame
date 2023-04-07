@@ -53,12 +53,31 @@ public class Vector4f {
         return this;
     }
 
+    public Vector4f add(float dx, float dy, float dw, float dh){
+        this.x += dx;
+        this.y += dy;
+        this.w += dw;
+        this.h += dh;
+        return this;
+    }
+
     public Vector4f absolute(){
         this.x = Math.abs(x);
         this.y = Math.abs(y);
         this.w = Math.abs(w);
         this.h = Math.abs(h);
         return this;
+    }
+
+    public Vector4f copy(){
+        return new Vector4f(x, y, w, h);
+    }
+
+    public void subtract(float dx, float dy, float dw, float dh){
+        this.x -= dx;
+        this.y -= dy;
+        this.w -= dw;
+        this.h -= dh;
     }
 
     @Override

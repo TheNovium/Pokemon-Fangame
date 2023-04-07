@@ -32,6 +32,9 @@ public class Renderer {
     public static final int OVERLAY_Z = TEXT_Z + 1;
     public static final int MAX_Z = OVERLAY_Z + 1;
 
+    //This should be the reference for how big things should be drawn
+    public static final float DEFAULT_TILE_SIZE = 1.002f / 6.0f;
+
     public static final IntRange STATIC_ELEMENTS = new IntRange(HUD_Z, OVERLAY_Z);
 
     private Renderer(){

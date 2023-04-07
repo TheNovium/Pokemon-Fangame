@@ -6,14 +6,12 @@ import space.novium.nebula.core.TilePos;
 import space.novium.nebula.core.resources.Registry;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.world.entity.Entity;
-import space.novium.nebula.world.entity.Player;
 import space.novium.nebula.world.enums.Direction;
 import space.novium.nebula.world.level.ILevelScene;
 import space.novium.nebula.world.level.Level;
 import space.novium.nebula.world.tiles.Tile;
 import space.novium.utils.data.Table;
 import space.novium.utils.math.Vector2f;
-import space.novium.utils.math.Vector2i;
 import space.novium.utils.math.Vector4f;
 
 import java.util.*;
@@ -63,16 +61,33 @@ public class Chunk {
 
     public Vector2f movementAllowed(Direction direction, Entity entity){
         Vector2f ret = new Vector2f(entity.getSpeed() * direction.getDirX(), entity.getSpeed() * direction.getDirY());
-        TilePos pos = entity.getPos();
-        pos.setPosition((CHUNK_WIDTH - 1) - pos.getX(), (CHUNK_HEIGHT - 1) - pos.getY());
-        System.out.println(pos);
-        Vector4f entityHitBox = entity.getHitBox();
-        List<Tile> tilesAtPosition = tiles.get(pos.getX(), pos.getY());
-        for(Tile t : tilesAtPosition){
-            if(t.collide()){
-                return new Vector2f(0, 0);
+        ret.mult(2.0f);
+        Vector4f entityPos = entity.getHitBox();
+        Vector2f scaledPos = entity.getScaledPos();
+        entityPos.add(scaledPos.getX() + ret.getX(), scaledPos.getY() - ret.getY(), 0.0f, 0.0f);
+        Set<TilePos> tilesToCheck = new HashSet<>();
+        tilesToCheck.add(new TilePos(entityPos.getX(), entityPos.getY()));
+        tilesToCheck.add(new TilePos(entityPos.getX() + entityPos.getW(), entityPos.getY()));
+        tilesToCheck.add(new TilePos(entityPos.getX() + entityPos.getW(), entityPos.getY() + entityPos.getH()));
+        tilesToCheck.add(new TilePos(entityPos.getX(), entityPos.getY() + entityPos.getH()));
+        for(TilePos testPos : tilesToCheck){
+            List<Tile> tilesAtPos = tiles.get(testPos.getX(), testPos.getY());
+            for(Tile tile : tilesAtPos){
+                if(tile.collide()){
+                    Vector4f thb = tile.getHitBox();
+                    thb.add((float) testPos.getX(), (float) testPos.getY(), 0.0f, 0.0f);
+                    if(
+                        entityPos.getX() < thb.getX() + thb.getW() &&
+                        entityPos.getX() + entityPos.getW() > thb.getX() &&
+                        entityPos.getY() < thb.getY() + thb.getH() &&
+                        entityPos.getY() + entityPos.getH() > thb.getY()
+                    ){
+                        return new Vector2f(0.0f);
+                    }
+                }
             }
         }
+        ret.mult(0.5f);
         return ret;
     }
 }

@@ -44,11 +44,15 @@ public class Entity {
     }
 
     public Vector2f getPosition(){
-        return position;
+        return position.copy();
+    }
+
+    public Vector2f getScaledPos(){
+        return new Vector2f(((float)Chunk.CHUNK_WIDTH) - (position.getX() + 1.0f) * ((float) Chunk.CHUNK_WIDTH) / 2.0f, ((float)Chunk.CHUNK_HEIGHT) - ((position.getY()) + 1.0f) * ((float)Chunk.CHUNK_HEIGHT) / 2.0f);
     }
 
     public Vector4f getHitBox() {
-        return hitBox;
+        return hitBox.copy();
     }
 
     private void setSpeed(float speed){

@@ -41,8 +41,21 @@ public class Vector2f {
         this.y += dy;
     }
 
+    public void subtract(Vector2f sub){
+        subtract(sub.getX(), sub.getY());
+    }
+
+    public void subtract(float dx, float dy){
+        this.x -= dx;
+        this.y -= dy;
+    }
+
     public void mult(Vector2f mult){
         mult(mult.x, mult.y);
+    }
+
+    public void mult(float dm){
+        mult(dm, dm);
     }
 
     public void mult(float dx, float dy){
@@ -52,6 +65,10 @@ public class Vector2f {
 
     public float getDifference(Vector2f other){
         return (float)Math.sqrt(Math.pow(getX() - other.getX(), 2) + Math.pow(getY() - other.getY(), 2));
+    }
+
+    public Vector2f copy(){
+        return new Vector2f(x, y);
     }
 
     public Vector2f getNormalVector(){

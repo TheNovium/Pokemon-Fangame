@@ -3,6 +3,8 @@ package space.novium.nebula.core;
 import space.novium.nebula.world.enums.Direction;
 import space.novium.utils.math.Vector2f;
 
+import java.util.Objects;
+
 public class TilePos implements Comparable<TilePos> {
     private int x, y;
 
@@ -49,6 +51,10 @@ public class TilePos implements Comparable<TilePos> {
         this.y = y;
     }
 
+    public TilePos copy(){
+        return new TilePos(x, y);
+    }
+
     @Override
     public int compareTo(TilePos o) {
         return x - o.getX() + y - o.getY();
@@ -65,5 +71,10 @@ public class TilePos implements Comparable<TilePos> {
     @Override
     public String toString() {
         return getX() + ", " + getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
