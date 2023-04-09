@@ -35,6 +35,11 @@ public class Entity {
         return new TilePos((position.getX() + 1.0f) * ((float) Chunk.CHUNK_WIDTH) / 2.0f, ((position.getY()) + 1.0f) * ((float)Chunk.CHUNK_HEIGHT) / 2.0f);
     }
 
+    public void setPosition(float x, float y){
+        position.setX(x);
+        position.setY(y);
+    }
+
     public float getSpeed() {
         return speed;
     }

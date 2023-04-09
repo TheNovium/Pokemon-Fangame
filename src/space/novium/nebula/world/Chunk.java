@@ -64,7 +64,7 @@ public class Chunk {
         ret.mult(2.0f);
         Vector4f entityPos = entity.getHitBox();
         Vector2f scaledPos = entity.getScaledPos();
-        entityPos.add(scaledPos.getX() + ret.getX(), scaledPos.getY() - ret.getY(), 0.0f, 0.0f);
+        entityPos.add(scaledPos.getX() - ret.getX(), scaledPos.getY() - ret.getY(), 0.0f, 0.0f);
         Set<TilePos> tilesToCheck = new HashSet<>();
         tilesToCheck.add(new TilePos(entityPos.getX(), entityPos.getY()));
         tilesToCheck.add(new TilePos(entityPos.getX() + entityPos.getW(), entityPos.getY()));
@@ -82,7 +82,8 @@ public class Chunk {
                         entityPos.getY() < thb.getY() + thb.getH() &&
                         entityPos.getY() + entityPos.getH() > thb.getY()
                     ){
-                        return new Vector2f(0.0f);
+                        ret.mult(0.0f);
+                        return ret;
                     }
                 }
             }
