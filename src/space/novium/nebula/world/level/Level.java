@@ -78,6 +78,8 @@ public class Level implements Runnable {
         float dp = cameraPos.getDifference(playerPos); //Eventually I'll use this to do a fancy camera
 
         camera.move(dx, dy);
+
+        loader.tick();
     }
 
     @Override

@@ -32,7 +32,7 @@ public class Entity {
     public void tick(Level level){}
 
     public TilePos getPos(){
-        return new TilePos((position.getX() + 1.0f) * ((float) Chunk.CHUNK_WIDTH) / 2.0f, ((position.getY()) + 1.0f) * ((float)Chunk.CHUNK_HEIGHT) / 2.0f);
+        return new TilePos(Chunk.CHUNK_WIDTH - (position.getX() + 1.0f) * ((float) Chunk.CHUNK_WIDTH) / 2.0f, Chunk.CHUNK_HEIGHT - ((position.getY()) + 1.0f) * ((float)Chunk.CHUNK_HEIGHT) / 2.0f);
     }
 
     public void setPosition(float x, float y){

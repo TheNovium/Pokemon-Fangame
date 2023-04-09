@@ -27,5 +27,7 @@ public class ChunkLoader {
         entity.move(allowedMovement);
     }
 
-    public void tick(){}
+    public void tick(){
+        tempChunk.tick();
+    }
 }

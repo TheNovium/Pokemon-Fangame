@@ -21,8 +21,10 @@ public class Chunk {
     public static final int CHUNK_WIDTH = 12;
     //TODO implement a custom hash based data struct that allows for stacking of tiles
     private final Table<Tile> tiles;
+    private final Level level;
 
     public Chunk(ILevelScene scene, Level level, JsonObject chunkInfo){
+        this.level = level;
         tiles = new Table<>(CHUNK_WIDTH, CHUNK_HEIGHT);
         Map<String, ResourceLocation> definitions = new HashMap<>();
         if(chunkInfo.has("define")){
@@ -90,5 +92,14 @@ public class Chunk {
         }
         ret.mult(0.5f);
         return ret;
+    }
+
+    public void tick(){
+        for(int i = 0; i < tiles.size(); i++){
+            List<Tile> tilesAtLoc = tiles.get(i);
+            for(Tile t : tilesAtLoc){
+                t.tick(level, level.getPlayer(), level.random);
+            }
+        }
     }
 }

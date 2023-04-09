@@ -8,6 +8,7 @@ import space.novium.utils.math.Vector2f;
 import space.novium.utils.math.Vector4f;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Tile {
     private TilePos position;
@@ -38,7 +39,7 @@ public class Tile {
         return tileType;
     }
 
-    public void tick(Level level, Player player){}
+    public void tick(Level level, Player player, Random random){}
 
     @Override
     public int hashCode() {

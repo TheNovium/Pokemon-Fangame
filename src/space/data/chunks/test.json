@@ -3,7 +3,8 @@
   "define": {
     "tile": {
       "b": "space:red_brick",
-      "r": "space:radiation_barrel"
+      "r": "space:radiation_barrel",
+      "g": "space:tall_grass"
     }
   },
   "tiles": [
@@ -19,8 +20,8 @@
        ["            "],
        ["            "],
        ["            "],
-       ["            "],
-       ["            "],
+       [" ggg        "],
+       [" ggg         "],
        ["            "],
        ["r           "]]
   ],

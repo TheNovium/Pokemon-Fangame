@@ -30,6 +30,15 @@ public class Table<T> {
         return ret;
     }
 
+    public List<T> get(int z){
+        int loc = z > 0 ? Math.min(z, table.length - 1) : 0;
+        List<T> ret = table[loc];
+        if(ret == null){
+            return new LinkedList<>();
+        }
+        return ret;
+    }
+
     private int getLocation(int x, int y){
         int loc = x * width + y;
         return loc > 0 ? Math.min(loc, table.length - 1) : 0;
@@ -41,5 +50,9 @@ public class Table<T> {
 
     public int getHeight(){
         return height;
+    }
+
+    public int size(){
+        return getWidth() * getHeight();
     }
 }
