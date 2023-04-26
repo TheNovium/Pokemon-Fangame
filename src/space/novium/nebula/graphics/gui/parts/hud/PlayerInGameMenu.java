@@ -50,6 +50,9 @@ public class PlayerInGameMenu {
         if(KeyInput.isPressed(KeyInput.HUD_ACTION_RIGHT)){
             tabs.get(activeIndex).rightAction();
         }
+        if(KeyInput.isPressed(KeyInput.HUD_SELECT)){
+            tabs.get(activeIndex).select();
+        }
     }
 
     private class Tab {
@@ -168,6 +171,10 @@ public class PlayerInGameMenu {
 
         public void leftAction(){
             tabAction.leftButton();
+        }
+
+        public void select(){
+            tabAction.select();
         }
     }
 }

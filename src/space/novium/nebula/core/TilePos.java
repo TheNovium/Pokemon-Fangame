@@ -30,34 +30,70 @@ public class TilePos implements Comparable<TilePos> {
 
 
 
+    /**
+     * @return the x position as an integer
+     * **/
     public int getX() {
         return x;
     }
 
+    /**
+     * @return the y position as an integer
+     * **/
     public int getY() {
         return y;
     }
 
+    /**
+     * Gets a tile position one away in the specified direction
+     *
+     * @param dir The direction to check
+     *
+     * @return the TilePos of that direction
+     * **/
     public TilePos getDirection(Direction dir){
         return getDirection(dir, 1);
     }
 
+    /**
+     * Gets a tile position a specified amount away in the specified direction
+     *
+     * @param dir The direction to check
+     * @param length The distance to cover
+     *
+     * @return the TilePos at the specified distance and direction
+     * **/
     public TilePos getDirection(Direction dir, int length){
         return new TilePos(getX() + dir.getDirX() * length, getY() + dir.getDirY() * length);
     }
 
+    /**
+     * Set the position of the tile
+     *
+     * @param x the x position of the tile
+     * @param y the y position of the tile
+     * **/
     public void setPosition(int x, int y){
         this.x = x;
         this.y = y;
     }
 
+
+    /**
+     * Creates a copy of the tile
+     *
+     * @return a TilePos with the same x and y location
+     * **/
     public TilePos copy(){
         return new TilePos(x, y);
     }
 
+    /**
+     * @return the manhattan distance between two positions
+     * **/
     @Override
     public int compareTo(TilePos o) {
-        return x - o.getX() + y - o.getY();
+        return Math.abs(x - o.getX()) + Math.abs(y - o.getY());
     }
 
     @Override

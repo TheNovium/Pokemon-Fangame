@@ -20,6 +20,7 @@ public class KeyInput {
     public static int HUD_RIGHT = GLFW_KEY_C;
     public static int HUD_ACTION_LEFT = GLFW_KEY_Q;
     public static int HUD_ACTION_RIGHT = GLFW_KEY_E;
+    public static int HUD_SELECT = GLFW_KEY_SPACE;
 
     //Movement Keys
     public static int MOVE_UP = GLFW_KEY_W;

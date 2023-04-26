@@ -24,7 +24,7 @@ public class QuestTab implements ITabAction {
     }
 
     @Override
-    public void act() {
+    public void select() {
 
     }
 

@@ -24,7 +24,7 @@ public class PokemonTab implements ITabAction {
     }
 
     @Override
-    public void act() {
+    public void select() {
 
     }
 
