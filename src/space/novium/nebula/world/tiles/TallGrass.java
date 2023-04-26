@@ -16,6 +16,11 @@ public class TallGrass extends Tile{
     }
 
     @Override
+    public boolean ticks() {
+        return true;
+    }
+
+    @Override
     public void tick(Level level, Player player, Random random) {
         if(player.getPos().equals(getPosition())){
             if(random.nextInt(100) == 0){

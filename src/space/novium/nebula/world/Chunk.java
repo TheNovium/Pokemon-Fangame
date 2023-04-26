@@ -21,11 +21,13 @@ public class Chunk {
     public static final int CHUNK_WIDTH = 12;
     //TODO implement a custom hash based data struct that allows for stacking of tiles
     private final Table<Tile> tiles;
+    private final List<Tile> tickingTiles;
     private final Level level;
 
     public Chunk(ILevelScene scene, Level level, JsonObject chunkInfo){
         this.level = level;
         tiles = new Table<>(CHUNK_WIDTH, CHUNK_HEIGHT);
+        tickingTiles = new ArrayList<>();
         Map<String, ResourceLocation> definitions = new HashMap<>();
         if(chunkInfo.has("define")){
             JsonObject define = chunkInfo.get("define").getAsJsonObject();
@@ -50,8 +52,8 @@ public class Chunk {
                         ResourceLocation tileLoc = definitions.get(String.valueOf(row.charAt(x)));
                         if(tileLoc != null){
                             Tile tile = Registry.TILE_REGISTRY.getValue(tileLoc);
-                            tile.setRegistryName(tileLoc);
                             tile.setPosition(x, y);
+                            if(tile.ticks()) tickingTiles.add(tile);
                             level.addTile(tile, z);
                             tiles.add(tile, x, y);
                         }
@@ -62,44 +64,12 @@ public class Chunk {
     }
 
     public Vector2f movementAllowed(Direction direction, Entity entity){
-        Vector2f ret = new Vector2f(entity.getSpeed() * direction.getDirX(), entity.getSpeed() * direction.getDirY());
-        ret.mult(2.0f);
-        Vector4f entityPos = entity.getHitBox();
-        Vector2f scaledPos = entity.getScaledPos();
-        entityPos.add(scaledPos.getX() - ret.getX(), scaledPos.getY() - ret.getY(), 0.0f, 0.0f);
-        Set<TilePos> tilesToCheck = new HashSet<>();
-        tilesToCheck.add(new TilePos(entityPos.getX(), entityPos.getY()));
-        tilesToCheck.add(new TilePos(entityPos.getX() + entityPos.getW(), entityPos.getY()));
-        tilesToCheck.add(new TilePos(entityPos.getX() + entityPos.getW(), entityPos.getY() + entityPos.getH()));
-        tilesToCheck.add(new TilePos(entityPos.getX(), entityPos.getY() + entityPos.getH()));
-        for(TilePos testPos : tilesToCheck){
-            List<Tile> tilesAtPos = tiles.get(testPos.getX(), testPos.getY());
-            for(Tile tile : tilesAtPos){
-                if(tile.collide()){
-                    Vector4f thb = tile.getHitBox();
-                    thb.add((float) testPos.getX(), (float) testPos.getY(), 0.0f, 0.0f);
-                    if(
-                        entityPos.getX() < thb.getX() + thb.getW() &&
-                        entityPos.getX() + entityPos.getW() > thb.getX() &&
-                        entityPos.getY() < thb.getY() + thb.getH() &&
-                        entityPos.getY() + entityPos.getH() > thb.getY()
-                    ){
-                        ret.mult(0.0f);
-                        return ret;
-                    }
-                }
-            }
-        }
-        ret.mult(0.5f);
-        return ret;
+        return new Vector2f();
     }
 
     public void tick(){
-        for(int i = 0; i < tiles.size(); i++){
-            List<Tile> tilesAtLoc = tiles.get(i);
-            for(Tile t : tilesAtLoc){
-                t.tick(level, level.getPlayer(), level.random);
-            }
+        for(Tile t : tickingTiles){
+            t.tick(level, level.getPlayer(), level.random);
         }
     }
 }

@@ -16,17 +16,12 @@ public class RadiationBarrel extends Tile {
     }
 
     @Override
-    public void tick(Level level, Player player) {
-
-    }
-
-    @Override
     public boolean collide() {
         return true;
     }
 
     @Override
     public Vector4f getHitBox() {
-        return new Vector4f(0.0625f, 0.0f, 0.875f, 1.0f);
+        return new Vector4f(0.0f, 0.0f, 1.0f, 1.0f);
     }
 }

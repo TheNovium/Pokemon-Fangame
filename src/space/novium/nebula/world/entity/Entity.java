@@ -32,7 +32,7 @@ public class Entity {
     public void tick(Level level){}
 
     public TilePos getPos(){
-        return new TilePos(Chunk.CHUNK_WIDTH - (position.getX() + 1.0f) * ((float) Chunk.CHUNK_WIDTH) / 2.0f, Chunk.CHUNK_HEIGHT - ((position.getY()) + 1.0f) * ((float)Chunk.CHUNK_HEIGHT) / 2.0f);
+        return new TilePos(position.getX(), position.getY());
     }
 
     public void setPosition(float x, float y){
@@ -50,10 +50,6 @@ public class Entity {
 
     public Vector2f getPosition(){
         return position.copy();
-    }
-
-    public Vector2f getScaledPos(){
-        return new Vector2f(((float)Chunk.CHUNK_WIDTH) - (position.getX() + 1.0f) * ((float) Chunk.CHUNK_WIDTH) / 2.0f, ((float)Chunk.CHUNK_HEIGHT) - ((position.getY()) + 1.0f) * ((float)Chunk.CHUNK_HEIGHT) / 2.0f);
     }
 
     public Vector4f getHitBox() {

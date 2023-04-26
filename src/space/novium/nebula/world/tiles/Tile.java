@@ -4,16 +4,15 @@ import space.novium.nebula.core.TilePos;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.world.entity.Player;
 import space.novium.nebula.world.level.Level;
-import space.novium.utils.math.Vector2f;
 import space.novium.utils.math.Vector4f;
 
 import java.util.Objects;
 import java.util.Random;
 
 public class Tile {
-    private TilePos position;
+    private final TilePos position;
     protected ResourceLocation tileType;
-    protected String registryName;
+    protected static String registryName;
 
     public Tile(){
         this(new TilePos(0, 0));
@@ -27,10 +26,6 @@ public class Tile {
         return position;
     }
 
-    public Vector2f getAbsolutePosition(){
-        return new Vector2f(((float) position.getX()) / 8.0f - 1.0f, ((float) position.getY()) / 6.0f - 1.0f);
-    }
-
     public void setPosition(int x, int y){
         position.setPosition(x, y);
     }
@@ -38,6 +33,10 @@ public class Tile {
     public ResourceLocation getTileType() {
         return tileType;
     }
+
+    public boolean ticks(){
+        return false;
+    };
 
     public void tick(Level level, Player player, Random random){}
 
@@ -63,7 +62,7 @@ public class Tile {
         if(getRegistryName() != null){
             System.err.println("Unable to set registry name to " + name + " because tile is already registered as "+ getRegistryName());
         } else {
-            this.registryName = name;
+            registryName = name;
         }
     }
 
