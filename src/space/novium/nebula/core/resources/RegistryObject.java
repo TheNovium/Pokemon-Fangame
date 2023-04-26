@@ -19,6 +19,9 @@ public class RegistryObject<T> implements Supplier<T> {
         updateReference(register);
     }
 
+    /**
+     * Updates the reference in the registry
+     * **/
     public void updateRegisterReference(){
         updateReference(register);
     }
@@ -34,14 +37,33 @@ public class RegistryObject<T> implements Supplier<T> {
         }
     }
 
+    /**
+     * Creates a registry object
+     *
+     * @param name ResourceLocation of the object
+     * @param registry Registry to register the object to
+     * @param mod The ID of the mod supplying the object
+     * @param <T> The base class of the register
+     * @param <U> The class of the object provided, must extend T
+     *
+     * @return a RegistryObject with the specified parameters
+     * **/
     public static <T, U extends T> RegistryObject<U> create(final ResourceLocation name, final ResourceKey<? extends Registry<T>> registry, final String mod){
         return new RegistryObject<>(name, registry.getLocation(), mod);
     }
 
+    /**
+     * @return the key associated with the object
+     * **/
     public ResourceKey<?> getKey() {
         return key;
     }
 
+    /**
+     * Supplier aspect of the registry object
+     *
+     * @return a new object from the registry
+     * **/
     @Nonnull
     @Override
     public T get(){

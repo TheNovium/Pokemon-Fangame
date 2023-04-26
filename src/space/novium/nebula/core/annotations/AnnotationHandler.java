@@ -19,6 +19,10 @@ public class AnnotationHandler {
     private static Map<String, Set<Method>> annotationsByMethod;
     private static final String EVENT_LISTENER = "EventListener";
 
+
+    /**
+     * This is called once to load annotation information at the start of the program
+     * **/
     public static void loadAnnotations(){
         if(!loaded){
             annotationsByMethod = new HashMap<>();
@@ -33,10 +37,22 @@ public class AnnotationHandler {
         }
     }
 
+
+    /**
+     * Runs specific events without arguments
+     *
+     * @param type The EventType to run
+     * **/
     public static void doEvent(EventType type){
         doEvent(type, null);
     }
 
+    /**
+     * Runs specific events with arguments
+     *
+     * @param type The EventType to run
+     * @param args Arguments to pass to the functions
+     * **/
     public static void doEvent(EventType type, Object... args){
         for(Method method :annotationsByMethod.get(EVENT_LISTENER)){
             try {
@@ -49,6 +65,9 @@ public class AnnotationHandler {
         }
     }
 
+    /**
+     * @return if the annotations have been loaded
+     * **/
     public static boolean isLoaded(){
         return loaded;
     }

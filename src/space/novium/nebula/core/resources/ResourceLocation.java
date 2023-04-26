@@ -21,6 +21,13 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
         }
     }
 
+    /**
+     * Checks if the provided string is a valid namespace
+     *
+     * @param space The namespace to check
+     *
+     * @return true if the namespace is valid
+     * **/
     public boolean isValidNamespace(String space){
         for(int i = 0; i < space.length(); i ++){
             if(!isValidNamespaceChar(space.charAt(i))){
@@ -30,10 +37,24 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
         return true;
     }
 
+    /**
+     * Checks for valid characters in the namespace
+     *
+     * @param c The character to check
+     *
+     * @return true if the character is valid
+     * **/
     public static boolean isValidNamespaceChar(char c){
         return c == '_' || c == '-' || c >= 'a' && c <= 'z' || c >= '0' && c <= '9' || c == '.';
     }
 
+    /**
+     * Checks if the provided string is a valid path
+     *
+     * @param p The path to check
+     *
+     * @return true if the path is valid
+     * **/
     public boolean isValidPath(String p){
         for(int i = 0; i < p.length(); i++){
             if(!isValidPathChar(p.charAt(i))){
@@ -43,6 +64,13 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
         return true;
     }
 
+    /**
+     * Checks for valid characters in the path
+     *
+     * @param c The character to check
+     *
+     * @return true if the character is valid
+     * **/
     public static boolean isValidPathChar(char c){
         return c == '_' || c == '-' || c >= 'a' && c <= 'z' || c >= '0' && c <= '9' || c == '.' || c == '/';
     }
@@ -59,22 +87,46 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
         return temp;
     }
 
+    /**
+     * @return the namespace of the location
+     * **/
     public String getNamespace() {
         return namespace;
     }
 
+    /**
+     * @return the path of the location
+     * **/
     public String getPath() {
         return path;
     }
 
+    /**
+     * Creates a ResourceLocation based off a string
+     *
+     * @param loc The string with the associated data
+     * **/
     public ResourceLocation(String loc){
         this(decompose(loc, NAMESPACE_SEPARATOR));
     }
 
+    /**
+     * Creates a ResourceLocation
+     *
+     * @param name The mod ID that the location is associated with
+     * @param part The name of the object the location is associated with
+     * **/
     public ResourceLocation(String name, String part){
         this(new String[]{name, part});
     }
 
+    /**
+     * Compares two ResourceLocations
+     *
+     * @param o The location to compare
+     *
+     * @return 0 if they are the same, -1 if the namespace is different, 1 if the namespace is the same but the path is different
+     * **/
     @Override
     public int compareTo(ResourceLocation o) {
         if(this.namespace.equals(o.getNamespace())){
