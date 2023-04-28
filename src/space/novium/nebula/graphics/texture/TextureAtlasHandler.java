@@ -17,10 +17,24 @@ public class TextureAtlasHandler {
         this.atlases = new HashMap<>();
     }
 
+    /**
+     * Gets a texture atlas
+     *
+     * @param type The atlas to look for
+     *
+     * @return The texture atlas associated with the atlas type
+     * **/
     public TextureAtlas getAtlas(TextureAtlasType type){
         return atlases.getOrDefault(type, null);
     }
 
+    /**
+     * Finds the SpriteRenderer associated with a resource location
+     *
+     * @param loc The resource location to search for
+     *
+     * @return a sprite renderer of the sprite if it is found
+     * **/
     public SpriteRenderer getRendererForResourceLocation(ResourceLocation loc){
         for(TextureAtlasType type : TextureAtlasType.values()){
             if(atlases.get(type).hasResource(loc)){
@@ -34,6 +48,13 @@ public class TextureAtlasHandler {
         return spr;
     }
 
+    /**
+     * Returns draw information for a sprite
+     *
+     * @param loc The location of the sprite
+     *
+     * @return the x, y, w, h of the information of the location
+     * **/
     public Vector4f getDrawLocationForResourceLocation(ResourceLocation loc){
         for(TextureAtlasType type : TextureAtlasType.values()){
             if(atlases.get(type).hasResource(loc)){
@@ -52,11 +73,27 @@ public class TextureAtlasHandler {
             atlasBuilders = new HashMap<>();
         }
 
+        /**
+         * Loads a texture into the specified atlas
+         *
+         * @param loc The location of the image in the resources folder
+         * @param type The atlas type to load the image into
+         *
+         * @return itself
+         * **/
         public Builder loadTexture(ResourceLocation loc, TextureAtlasType type){
             return loadTexture(loc, loc, type);
         }
 
-
+        /**
+         * Loads a texture into the specified atlas
+         *
+         * @param loc The location of the image in the resources folder
+         * @param home  The location where the image should be stored in the texture atlas
+         * @param type The atlas type to load the image into
+         *
+         * @return itself
+         * **/
         public Builder loadTexture(ResourceLocation loc, ResourceLocation home, TextureAtlasType type){
             if(!atlasBuilders.containsKey(type)){
                 atlasBuilders.put(type, new TextureAtlas.Builder(type));
@@ -66,6 +103,15 @@ public class TextureAtlasHandler {
             return this;
         }
 
+        /**
+         * Loads a texture into the specified atlas
+         *
+         * @param loc The location that the image should be stored in the texture atlas
+         * @param type The atlas type to load the image into
+         * @param img Image data to be processed
+         *
+         * @return itself
+         * **/
         public Builder loadTexture(ResourceLocation loc, TextureAtlasType type, BufferedImage img){
             if(!atlasBuilders.containsKey(type)){
                 atlasBuilders.put(type, new TextureAtlas.Builder(type));
@@ -75,6 +121,9 @@ public class TextureAtlasHandler {
             return this;
         }
 
+        /**
+         * @return A compiled TextureAtlasHandler
+         * **/
         public TextureAtlasHandler build(){
             TextureAtlasHandler handler = new TextureAtlasHandler(id);
             for(TextureAtlasType type : TextureAtlasType.values()){

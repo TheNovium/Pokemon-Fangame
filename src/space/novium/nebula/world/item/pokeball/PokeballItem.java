@@ -1,7 +1,7 @@
-package space.novium.nebula.item.pokeball;
+package space.novium.nebula.world.item.pokeball;
 
-import space.novium.nebula.item.Item;
-import space.novium.nebula.item.ItemTabLocation;
+import space.novium.nebula.world.item.Item;
+import space.novium.nebula.world.item.ItemTabLocation;
 
 public class PokeballItem extends Item {
     public PokeballItem(){

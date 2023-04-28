@@ -2,7 +2,7 @@ package space.novium.nebula.core.resources;
 
 import space.novium.Game;
 import space.novium.nebula.graphics.renderer.FontRenderer;
-import space.novium.nebula.item.Item;
+import space.novium.nebula.world.item.Item;
 import space.novium.nebula.world.entity.Entity;
 import space.novium.nebula.world.tiles.Tile;
 

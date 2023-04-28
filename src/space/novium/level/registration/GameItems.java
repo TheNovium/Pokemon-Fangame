@@ -5,8 +5,8 @@ import space.novium.nebula.core.event.enums.EventType;
 import space.novium.nebula.core.resources.Registry;
 import space.novium.nebula.core.resources.RegistryObject;
 import space.novium.nebula.core.resources.registration.IEventRegister;
-import space.novium.nebula.item.Item;
-import space.novium.nebula.item.pokeball.PokeballItem;
+import space.novium.nebula.world.item.Item;
+import space.novium.nebula.world.item.pokeball.PokeballItem;
 
 public class GameItems {
     private GameItems(){}

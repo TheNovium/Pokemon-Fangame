@@ -54,6 +54,13 @@ public class TextureAtlas {
         return imageLocs.getOrDefault(loc, getNullLocation());
     }
 
+    /**
+     * Returns a normalized representation of TextureAtlas.getImageLocation
+     *
+     * @param loc The resource location of the sprite
+     *
+     * @return a vector4f with [0, 1] with the information about the image
+     * **/
     public Vector4f getRelativeImageLocation(ResourceLocation loc){
         Vector4i standard = getImageLocation(loc);
         Vector4f ret = new Vector4f();
@@ -64,10 +71,16 @@ public class TextureAtlas {
         return ret;
     }
 
+    /**
+     * @return The location of the no-texture texture
+     * **/
     public Vector4i getNullLocation(){
         return imageLocs.getOrDefault(NO_TEXTURE, new Vector4i(0, 0, 0, 0));
     }
 
+    /**
+     * @return the GL Texture ID
+     * **/
     public Texture getTexture() {
         return texture;
     }
@@ -76,6 +89,9 @@ public class TextureAtlas {
         this.texture = texture;
     }
 
+    /***
+     * @return The TextureAtlasType associated with the atlas
+     * */
     public TextureAtlasType getType() {
         return type;
     }
@@ -92,15 +108,38 @@ public class TextureAtlas {
             addImage(NO_TEXTURE);
         }
 
+        /**
+         * Adds an image to the atlas
+         *
+         * @param loc The location of the image in the mod resources folder
+         *
+         * @return itself
+         * **/
         public Builder addImage(ResourceLocation loc){
             return addImage(loc, loc);
         }
 
+        /**
+         * Adds an image to the atlas
+         *
+         * @param loc The location of the image in the mod resources folder
+         * @param home The resource location that should be stored
+         *
+         * @return itself
+         * **/
         public Builder addImage(ResourceLocation loc, ResourceLocation home){
             BufferedImage img = IOUtils.loadImage(loc);
             return addImage(home, img);
         }
 
+        /**
+         * Adds an image to the atlas
+         *
+         * @param home The location of the image in the mod resources folder
+         * @param image The BufferedImage information about the image
+         *
+         * @return itself
+         * **/
         public Builder addImage(ResourceLocation home, BufferedImage image){
             largest.x = Math.max(largest.x, image.getWidth());
             largest.y = Math.max(largest.y, image.getHeight());
@@ -108,6 +147,11 @@ public class TextureAtlas {
             return this;
         }
 
+        /**
+         * Compiles the images down to the atlas
+         *
+         * @return A compiled texture atlas
+         * **/
         public TextureAtlas build(){
             BufferedImage atImg;
             switch(atlas.getType()){

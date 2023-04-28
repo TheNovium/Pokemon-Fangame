@@ -1,4 +1,4 @@
-package space.novium.nebula.item;
+package space.novium.nebula.world.item;
 
 import java.awt.*;
 

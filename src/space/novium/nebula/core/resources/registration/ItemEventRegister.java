@@ -7,7 +7,7 @@ import space.novium.nebula.core.resources.RegistryObject;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.graphics.texture.TextureAtlasHandler;
 import space.novium.nebula.graphics.texture.TextureAtlasType;
-import space.novium.nebula.item.Item;
+import space.novium.nebula.world.item.Item;
 import space.novium.utils.IOUtils;
 
 public class ItemEventRegister implements IEventRegister<Item> {
