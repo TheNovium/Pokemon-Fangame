@@ -32,10 +32,24 @@ public class TextureAtlas {
         imageLocs.put(loc, vec);
     }
 
+    /**
+     * Checks to see if there is a resource in the requested location
+     *
+     * @param loc A resource location to check for
+     *
+     * @return true if the location exists
+     * **/
     public boolean hasResource(ResourceLocation loc){
         return imageLocs.containsKey(loc);
     }
 
+    /**
+     * Returns a x, y, w, h representation of the location of a sprite in the atlas
+     *
+     * @param loc The resource location of the sprite
+     *
+     * @return a vector4i with the information about the image
+     * **/
     public Vector4i getImageLocation(ResourceLocation loc){
         return imageLocs.getOrDefault(loc, getNullLocation());
     }

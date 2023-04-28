@@ -44,22 +44,37 @@ public class Texture {
         return ret;
     }
 
+    /**
+     * @return The GL location of the texture
+     * **/
     public int getTexture(){
         return texture;
     }
 
+    /**
+     * @return the width in pixels of the texture
+     * **/
     public int getWidth() {
         return width;
     }
 
+    /**
+     * @return the height in pixels of the texture
+     * **/
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Binds the texture for use in the GL program
+     * **/
     public void bind(){
         glBindTexture(GL_TEXTURE_2D, texture);
     }
 
+    /**
+     * Unbinds texture from the GL program
+     * **/
     public void unbind(){
         glBindTexture(GL_TEXTURE_2D, 0);
     }
