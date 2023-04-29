@@ -30,4 +30,8 @@ public class ChunkLoader {
     public void tick(){
         tempChunk.tick();
     }
+    
+    public Vector2f getPlayerSpawn(){
+        return tempChunk.getSpawnLoc();
+    }
 }

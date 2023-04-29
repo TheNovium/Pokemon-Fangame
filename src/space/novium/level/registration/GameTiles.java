@@ -19,6 +19,7 @@ public class GameTiles {
     public static final RegistryObject<Tile> RED_BRICK = register("red_brick", Tile::new);
     public static final RegistryObject<Tile> RADIATION_BARREL = register("radiation_barrel", RadiationBarrel::new);
     public static final RegistryObject<Tile> TALL_GRASS = register("tall_grass", TallGrass::new);
+    public static final RegistryObject<Tile> TEST_TILE = register("test_tile", Tile::new);
 
     @EventListener(event = EventType.TILE_REGISTRATION)
     public static void registerTiles(IEventRegister<Tile> register){

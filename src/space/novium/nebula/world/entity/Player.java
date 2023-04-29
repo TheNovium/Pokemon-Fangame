@@ -20,14 +20,14 @@ public class Player extends Entity {
     public Player(){
         super(new Entity.Properties()
                 .setHitBox(0.0625f, 0.0625f, 0.875f, 0.875f)
-                .setSpeed(0.1f));
+                .setSpeed(0.05f));
         TextureAtlasHandler handler = Renderer.get().getHandler();
         spr = new SpriteRenderer(TextureAtlasType.ENTITY);
         spr.addDrawLocation(handler.getDrawLocationForResourceLocation(GameResourceLocations.PLAYER_UP));
         spr.addDrawLocation(handler.getDrawLocationForResourceLocation(GameResourceLocations.PLAYER_RIGHT));
         spr.addDrawLocation(handler.getDrawLocationForResourceLocation(GameResourceLocations.PLAYER_DOWN));
         spr.addDrawLocation(handler.getDrawLocationForResourceLocation(GameResourceLocations.PLAYER_LEFT));
-        obj = new GameObject("Player", new Transform(new Vector2f(getHitBox().getX(), getHitBox().getY()), new Vector2f(getHitBox().getW() * Renderer.DEFAULT_TILE_SIZE, getHitBox().getH() * Renderer.DEFAULT_TILE_SIZE * Window.get().getAspectRatio()), Renderer.TEXT_Z));
+        obj = new GameObject("Player", new Transform(new Vector2f(getHitBox().getX() * Renderer.DEFAULT_TILE_SIZE, getHitBox().getY() * Renderer.DEFAULT_TILE_SIZE), new Vector2f(getHitBox().getW() * Renderer.DEFAULT_TILE_SIZE, getHitBox().getH() * Renderer.DEFAULT_TILE_SIZE * Window.get().getAspectRatio()), Renderer.TEXT_Z));
         obj.addComponent(spr);
         Renderer.get().add(obj);
     }

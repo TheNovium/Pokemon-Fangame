@@ -4,29 +4,30 @@
     "tile": {
       "b": "space:red_brick",
       "r": "space:radiation_barrel",
-      "g": "space:tall_grass"
+      "g": "space:tall_grass",
+      "t": "space:test_tile"
     }
   },
   "tiles": [
-      [["bbbbbbbbbbbb"],
-       ["bbbbbbbbbbbb"],
-       ["bbbbbbbbbbbb"],
-       ["bbbbbbbbbbbb"],
-       ["bbbbbbbbbbbb"],
-       ["bbbbbbbbbbbb"],
-       ["bbbbbbbbbbbb"],
-       ["bbbbbbbbbbbb"]],
-      [["            "],
+      [["btbtbtbtbtbt"],
+       ["tbtbtbtbtbtb"],
+       ["btbtbtbtbtbt"],
+       ["tbtbtbtbtbtb"],
+       ["btbtbtbtbtbt"],
+       ["tbtbtbtbtbtb"],
+       ["btbtbtbtbtbt"],
+       ["tbtbtbtbtbtb"]],
+      [["  r          "],
        ["            "],
        ["            "],
        ["            "],
        [" ggg        "],
-       [" ggg         "],
-       ["            "],
-       ["r           "]]
+       [" ggg        "],
+       [" r          "],
+       ["            "]]
   ],
   "spawn": {
-    "x": 1,
-    "y": 1
+    "x": 6,
+    "y": 4
   }
 }

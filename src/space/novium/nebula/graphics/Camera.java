@@ -98,7 +98,7 @@ public class Camera {
      * @return A vector2f of the position
      * **/
     public Vector2f getPosition(){
-        return position;
+        return position.copy();
     }
 
     /**

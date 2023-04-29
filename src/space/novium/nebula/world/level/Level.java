@@ -36,6 +36,7 @@ public class Level implements Runnable {
         player = new Player();
         tileList = new ArrayList<>();
         loader = new ChunkLoader(new ResourceLocation("chunks/test"), scene, this);
+        player.setPosition(loader.getPlayerSpawn());
     }
 
     public Player getPlayer(){
@@ -65,13 +66,14 @@ public class Level implements Runnable {
         player.tick(this);
         float maxSpeed = player.getSpeed();
         Vector2f cameraPos = camera.getPosition();
+        cameraPos.mult(-1.0f);
         Vector2f playerPos = Chunk.getNormalizedDrawLocation(player.getPosition());
-        float dx = playerPos.getX() - cameraPos.getX();
+        float dx = playerPos.getX() + cameraPos.getX();
         if(dx != 0.0f && dx > maxSpeed){
             dx /= Math.abs(dx);
             dx *= maxSpeed;
         }
-        float dy = playerPos.getY() - cameraPos.getY();
+        float dy = playerPos.getY() + cameraPos.getY();
         if(dy != 0.0f && dy > maxSpeed){
             dy /= Math.abs(dy);
             dy *= maxSpeed;

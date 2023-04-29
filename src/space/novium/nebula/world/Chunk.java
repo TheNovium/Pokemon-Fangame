@@ -53,11 +53,11 @@ public class Chunk {
                         ResourceLocation tileLoc = definitions.get(String.valueOf(row.charAt(x)));
                         if(tileLoc != null){
                             Tile tile = Registry.TILE_REGISTRY.getValue(tileLoc);
-                            tile.setPosition(x, y);
+                            tile.setPosition(x, CHUNK_HEIGHT - 1 - y);
                             tile.setRegistryName(tileLoc);
                             if(tile.ticks()) tickingTiles.add(tile);
                             level.addTile(tile, z);
-                            tiles.add(tile, x, y);
+                            tiles.add(tile, x, CHUNK_HEIGHT - 1 - y);
                         }
                     }
                 }
@@ -75,27 +75,38 @@ public class Chunk {
     }
 
     public Vector2f movementAllowed(Direction direction, Entity entity){
-        Vector2f speed = new Vector2f(2.0f);
+        Vector2f speed = new Vector2f(1.0f);
         Vector2f pos = entity.getPosition();
-        System.out.println(pos);
-        Vector4f entityHitBox = entity.getHitBox();
+        Vector2f ePos = new Vector2f(CHUNK_WIDTH, CHUNK_HEIGHT);
+        ePos.subtract(pos);
         speed.mult((float)direction.getDirX(), (float)direction.getDirY());
         speed.mult(entity.getSpeed());
+        ePos.subtract(speed);
+        Vector4f entityHitBox = entity.getHitBox();
+        entityHitBox.add(ePos.getX(), ePos.getY(), 0, 0);
         Set<TilePos> interactionTiles = new HashSet<>(4);
-        interactionTiles.add(new TilePos(pos.getX(), pos.getY()));
-        interactionTiles.add(new TilePos(pos.getX() + entityHitBox.getW(), pos.getY()));
-        interactionTiles.add(new TilePos(pos.getX() + entityHitBox.getW(), pos.getY() + entityHitBox.getH()));
-        interactionTiles.add(new TilePos(pos.getX(), pos.getY() + entityHitBox.getH()));
+        interactionTiles.add(new TilePos(ePos.getX(), ePos.getY()));
+        interactionTiles.add(new TilePos(ePos.getX() + entityHitBox.getW(), ePos.getY()));
+        interactionTiles.add(new TilePos(ePos.getX() + entityHitBox.getW(), ePos.getY() + entityHitBox.getH()));
+        interactionTiles.add(new TilePos(ePos.getX(), ePos.getY() + entityHitBox.getH()));
         for(TilePos tPos : interactionTiles){
             List<Tile> tilesAtPos = tiles.get(tPos.getX(), tPos.getY());
             for(Tile tile : tilesAtPos){
                 if(tile.collide()){
                     Vector4f tileHitBox = tile.getHitBox();
                     tileHitBox.add((float) tPos.getX(), (float) tPos.getY(), 0.0f, 0.0f);
+                    if(
+                        entityHitBox.getX() < tileHitBox.getX() + tileHitBox.getW() &&
+                        entityHitBox.getX() + entityHitBox.getW() > tileHitBox.getX() &&
+                        entityHitBox.getY() < tileHitBox.getY() + tileHitBox.getH() &&
+                        entityHitBox.getY() + entityHitBox.getH() > tileHitBox.getH()
+                    ) {
+                        speed.mult(0);
+                        return speed;
+                    }
                 }
             }
         }
-        speed.mult(0.5f);
         return speed;
     }
 

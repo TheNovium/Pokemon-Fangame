@@ -39,6 +39,10 @@ public class Entity {
         position.setX(x);
         position.setY(y);
     }
+    
+    public void setPosition(Vector2f vec){
+        setPosition(vec.getX(), vec.getY());
+    }
 
     public float getSpeed() {
         return speed;

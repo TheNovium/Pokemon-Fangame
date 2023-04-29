@@ -22,6 +22,6 @@ public class RadiationBarrel extends Tile {
 
     @Override
     public Vector4f getHitBox() {
-        return new Vector4f(0.0f, 0.0f, 1.0f, 1.0f);
+        return new Vector4f(0.0675f,0,0.875f,1.0f);
     }
 }
