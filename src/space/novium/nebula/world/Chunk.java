@@ -23,6 +23,7 @@ public class Chunk {
     private final Table<Tile> tiles;
     private final List<Tile> tickingTiles;
     private final Level level;
+    private final Vector2f spawnLoc;
 
     public Chunk(ILevelScene scene, Level level, JsonObject chunkInfo){
         this.level = level;
@@ -62,14 +63,38 @@ public class Chunk {
                 }
             }
         }
+        if(chunkInfo.has("spawn")){
+            JsonObject spawnInfo = chunkInfo.get("spawn").getAsJsonObject();
+            spawnLoc = new Vector2f(
+                spawnInfo.has("x") ? spawnInfo.get("x").getAsFloat() : 0.0f,
+                spawnInfo.has("y") ? spawnInfo.get("y").getAsFloat() : 0.0f
+            );
+        } else {
+            spawnLoc = new Vector2f();
+        }
     }
 
     public Vector2f movementAllowed(Direction direction, Entity entity){
         Vector2f speed = new Vector2f(2.0f);
+        Vector2f pos = entity.getPosition();
+        System.out.println(pos);
+        Vector4f entityHitBox = entity.getHitBox();
         speed.mult((float)direction.getDirX(), (float)direction.getDirY());
         speed.mult(entity.getSpeed());
         Set<TilePos> interactionTiles = new HashSet<>(4);
-        
+        interactionTiles.add(new TilePos(pos.getX(), pos.getY()));
+        interactionTiles.add(new TilePos(pos.getX() + entityHitBox.getW(), pos.getY()));
+        interactionTiles.add(new TilePos(pos.getX() + entityHitBox.getW(), pos.getY() + entityHitBox.getH()));
+        interactionTiles.add(new TilePos(pos.getX(), pos.getY() + entityHitBox.getH()));
+        for(TilePos tPos : interactionTiles){
+            List<Tile> tilesAtPos = tiles.get(tPos.getX(), tPos.getY());
+            for(Tile tile : tilesAtPos){
+                if(tile.collide()){
+                    Vector4f tileHitBox = tile.getHitBox();
+                    tileHitBox.add((float) tPos.getX(), (float) tPos.getY(), 0.0f, 0.0f);
+                }
+            }
+        }
         speed.mult(0.5f);
         return speed;
     }
@@ -78,5 +103,20 @@ public class Chunk {
         for(Tile t : tickingTiles){
             t.tick(level, level.getPlayer(), level.random);
         }
+    }
+    
+    public Vector2f getSpawnLoc(){
+        return spawnLoc.copy();
+    }
+    
+    public static Vector2f getNormalizedDrawLocation(float x, float y){
+        return new Vector2f(
+                x / (CHUNK_WIDTH / 2.0f) - 1.0f,
+                y / (CHUNK_HEIGHT / 2.0f) - 1.0f
+        );
+    }
+    
+    public static Vector2f getNormalizedDrawLocation(Vector2f vec){
+        return getNormalizedDrawLocation(vec.getX(), vec.getY());
     }
 }

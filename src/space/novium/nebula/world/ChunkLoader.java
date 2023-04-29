@@ -16,7 +16,7 @@ public class ChunkLoader {
     private List<Chunk> chunks;
 
     private Chunk tempChunk;
-
+    
     public ChunkLoader(ResourceLocation startingChunk, ILevelScene scene, Level level){
         chunks = new LinkedList<>();
         tempChunk = new Chunk(scene, level, IOUtils.loadJson(startingChunk));
