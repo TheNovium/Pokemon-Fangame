@@ -10,6 +10,8 @@ import space.novium.nebula.graphics.gui.parts.hud.PlayerInGameMenu;
 import space.novium.nebula.graphics.gui.parts.TextPart;
 import space.novium.nebula.graphics.gui.parts.enums.TextAlign;
 import space.novium.nebula.graphics.renderer.Renderer;
+import space.novium.nebula.world.Chunk;
+import space.novium.nebula.world.entity.Player;
 import space.novium.nebula.world.level.ILevelScene;
 import space.novium.nebula.world.level.Level;
 import space.novium.nebula.world.tiles.Tile;
@@ -28,6 +30,7 @@ public class FunctionTestPage extends Scene implements ILevelScene {
     private TextPart region;
     private float textTimer = 0.0f;
     private Timer timer;
+    private Player player;
     private PlayerInGameMenu playerMenu;
     private List<ImagePart> images;
 
@@ -42,7 +45,8 @@ public class FunctionTestPage extends Scene implements ILevelScene {
         region = new TextPart("", new Vector2f(-0.98f, 0.96f), 1.96f, TextAlign.LEFT, GameFonts.BASE_SMALL);
         timer = new Timer();
         level = new Level(this);
-        playerMenu = new PlayerInGameMenu(level.getPlayer());
+        player = level.getPlayer();
+        playerMenu = new PlayerInGameMenu(player);
         setRegion(level.getRegion());
         if(chunk.has("region")){
             level.setRegion(chunk.get("region").getAsString());
@@ -83,12 +87,12 @@ public class FunctionTestPage extends Scene implements ILevelScene {
         TilePos pos = tile.getPosition();
         ImagePart part = new ImagePart(new ResourceLocation(tile.getRegistryName()),
                 new Vector2f(
-                        ((float)pos.getX()) / 6.0f - 1.0f,
-                        ((float)pos.getY()) / 4.0f - 1.0f
+                        ((float)pos.getX()) / (Chunk.CHUNK_WIDTH / 2.0f) - 1.0f,
+                        ((float)pos.getY()) / (Chunk.CHUNK_HEIGHT / 2.0f) - 1.0f
                 ), Renderer.DEFAULT_TILE_SIZE, Renderer.WORLD_START_Z + z);
         images.add(part);
     }
-
+    
     @Override
     public Camera getCamera() {
         return camera;

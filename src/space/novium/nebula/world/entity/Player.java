@@ -26,7 +26,7 @@ public class Player extends Entity {
         spr.addDrawLocation(handler.getDrawLocationForResourceLocation(GameResourceLocations.PLAYER_RIGHT));
         spr.addDrawLocation(handler.getDrawLocationForResourceLocation(GameResourceLocations.PLAYER_DOWN));
         spr.addDrawLocation(handler.getDrawLocationForResourceLocation(GameResourceLocations.PLAYER_LEFT));
-        obj = new GameObject("Player", new Transform(new Vector2f(0, 0), new Vector2f(Renderer.DEFAULT_TILE_SIZE, Renderer.DEFAULT_TILE_SIZE * Window.get().getAspectRatio()), Renderer.TEXT_Z));
+        obj = new GameObject("Player", new Transform(new Vector2f(getHitBox().getX(), getHitBox().getY()), new Vector2f(getHitBox().getW() * Renderer.DEFAULT_TILE_SIZE, getHitBox().getH() * Renderer.DEFAULT_TILE_SIZE * Window.get().getAspectRatio()), Renderer.TEXT_Z));
         obj.addComponent(spr);
         Renderer.get().add(obj);
     }

@@ -65,10 +65,13 @@ public class Chunk {
     }
 
     public Vector2f movementAllowed(Direction direction, Entity entity){
-        Vector2f vec2 = new Vector2f(1.0f);
-        vec2.mult((float)direction.getDirX(), (float)direction.getDirY());
-        vec2.mult(entity.getSpeed());
-        return vec2;
+        Vector2f speed = new Vector2f(2.0f);
+        speed.mult((float)direction.getDirX(), (float)direction.getDirY());
+        speed.mult(entity.getSpeed());
+        Set<TilePos> interactionTiles = new HashSet<>(4);
+        
+        speed.mult(0.5f);
+        return speed;
     }
 
     public void tick(){
