@@ -20,6 +20,7 @@ public class GameResourceLocations {
     public static final ResourceLocation WARNING_SYMBOL = registerUIComponent("symbols/warning");
     public static final ResourceLocation POKEBALL_SYMBOL = registerUIComponent("symbols/pokeball");
     public static final ResourceLocation BOOK_SYMBOL = registerUIComponent("symbols/book");
+    public static final ResourceLocation RADIATION_SYMBOL = registerUIComponent("symbols/radiation");
     public static final ResourceLocation LIGHT_GREATER_ARROW = registerUIComponent("light_arrow");
     public static final ResourceLocation LIGHT_GREY_BANNER = registerUIComponent("banner/light_grey");
 
