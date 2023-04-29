@@ -3,6 +3,7 @@ package space.novium.nebula.world.level;
 import space.novium.nebula.KeyInput;
 import space.novium.nebula.core.resources.ResourceLocation;
 import space.novium.nebula.graphics.Camera;
+import space.novium.nebula.world.Chunk;
 import space.novium.nebula.world.ChunkLoader;
 import space.novium.nebula.world.entity.Entity;
 import space.novium.nebula.world.entity.Player;
@@ -64,19 +65,19 @@ public class Level implements Runnable {
         player.tick(this);
         float maxSpeed = player.getSpeed();
         Vector2f cameraPos = camera.getPosition();
-        Vector2f playerPos = player.getPosition();
+        Vector2f playerPos = Chunk.getNormalizedDrawLocation(player.getPosition());
         float dx = playerPos.getX() - cameraPos.getX();
-        if(dx != 0.0f){
+        if(dx != 0.0f && dx > maxSpeed){
             dx /= Math.abs(dx);
             dx *= maxSpeed;
         }
         float dy = playerPos.getY() - cameraPos.getY();
-        if(dy != 0.0f){
+        if(dy != 0.0f && dy > maxSpeed){
             dy /= Math.abs(dy);
             dy *= maxSpeed;
         }
         float dp = cameraPos.getDifference(playerPos); //Eventually I'll use this to do a fancy camera
-
+    
         camera.move(dx, dy);
 
         loader.tick();

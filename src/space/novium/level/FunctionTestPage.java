@@ -86,10 +86,8 @@ public class FunctionTestPage extends Scene implements ILevelScene {
     public void addTile(Tile tile, int z) {
         TilePos pos = tile.getPosition();
         ImagePart part = new ImagePart(new ResourceLocation(tile.getRegistryName()),
-                new Vector2f(
-                        ((float)pos.getX()) / (Chunk.CHUNK_WIDTH / 2.0f) - 1.0f,
-                        ((float)pos.getY()) / (Chunk.CHUNK_HEIGHT / 2.0f) - 1.0f
-                ), Renderer.DEFAULT_TILE_SIZE, Renderer.WORLD_START_Z + z);
+                Chunk.getNormalizedDrawLocation((float) pos.getX(), (float) pos.getY())
+                , Renderer.DEFAULT_TILE_SIZE, Renderer.WORLD_START_Z + z);
         images.add(part);
     }
     
