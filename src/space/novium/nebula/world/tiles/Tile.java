@@ -70,10 +70,16 @@ public class Tile {
         return registryName;
     }
 
+    /**
+     * @return true if the tile has a hitbox
+     * **/
     public boolean collide(){
         return false;
     }
 
+    /**
+     * Returns the square hitbox of the tile
+     * **/
     public Vector4f getHitBox(){
         return new Vector4f();
     }

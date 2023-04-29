@@ -64,6 +64,15 @@ public class Camera {
         position.x += dx;
         position.y += dy;
     }
+    
+    /**
+     * Moves the camera
+     *
+     * @param vec moves the camera with the x and y information stored in the vector
+     * **/
+    public void move(Vector2f vec){
+        move(vec.getX(), vec.getY());
+    }
 
     /**
      * Sets the position of the camera

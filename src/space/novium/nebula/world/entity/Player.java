@@ -19,7 +19,8 @@ public class Player extends Entity {
 
     public Player(){
         super(new Entity.Properties()
-                .setHitBox(0.0625f, 0.0625f, 0.875f, 0.875f));
+                .setHitBox(0.0625f, 0.0625f, 0.875f, 0.875f)
+                .setSpeed(0.1f));
         TextureAtlasHandler handler = Renderer.get().getHandler();
         spr = new SpriteRenderer(TextureAtlasType.ENTITY);
         spr.addDrawLocation(handler.getDrawLocationForResourceLocation(GameResourceLocations.PLAYER_UP));
