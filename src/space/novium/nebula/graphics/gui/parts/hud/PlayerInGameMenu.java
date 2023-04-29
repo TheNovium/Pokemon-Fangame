@@ -8,6 +8,7 @@ import space.novium.nebula.graphics.gui.parts.ImagePart;
 import space.novium.nebula.graphics.gui.parts.RectPart;
 import space.novium.nebula.graphics.gui.parts.hud.tabs.PokemonTab;
 import space.novium.nebula.graphics.gui.parts.hud.tabs.QuestTab;
+import space.novium.nebula.graphics.gui.parts.hud.tabs.RadiationTab;
 import space.novium.nebula.graphics.renderer.Renderer;
 import space.novium.nebula.world.entity.Player;
 import space.novium.utils.ColorUtils;
@@ -25,6 +26,7 @@ public class PlayerInGameMenu {
         tabs = new ArrayList<>();
         tabs.add(new Tab("Party", new Vector4f(0.5f, 0.1f, 0.35f, 1.0f), GameResourceLocations.POKEBALL_SYMBOL, new PokemonTab(player)));
         tabs.add(new Tab("Quest", new Vector4f(0.3f, 0.3f, 0.4f, 1.0f), GameResourceLocations.BOOK_SYMBOL, new QuestTab(player)));
+        tabs.add(new Tab("Radiation", new Vector4f(0.5f, 0.5f, 0.1f, 1.0f), GameResourceLocations.RADIATION_SYMBOL, new RadiationTab(player)));
         activeIndex = 0;
         for (Tab tab : tabs) {
             tab.disable();
