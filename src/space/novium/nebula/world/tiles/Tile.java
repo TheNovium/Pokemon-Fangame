@@ -12,7 +12,7 @@ import java.util.Random;
 public class Tile {
     private final TilePos position;
     protected ResourceLocation tileType;
-    protected static String registryName;
+    protected String registryName;
 
     public Tile(){
         this(new TilePos(0, 0));

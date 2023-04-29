@@ -53,6 +53,7 @@ public class Chunk {
                         if(tileLoc != null){
                             Tile tile = Registry.TILE_REGISTRY.getValue(tileLoc);
                             tile.setPosition(x, y);
+                            tile.setRegistryName(tileLoc);
                             if(tile.ticks()) tickingTiles.add(tile);
                             level.addTile(tile, z);
                             tiles.add(tile, x, y);
@@ -64,7 +65,10 @@ public class Chunk {
     }
 
     public Vector2f movementAllowed(Direction direction, Entity entity){
-        return new Vector2f();
+        Vector2f vec2 = new Vector2f(1.0f);
+        vec2.mult((float)direction.getDirX(), (float)direction.getDirY());
+        vec2.mult(entity.getSpeed());
+        return vec2;
     }
 
     public void tick(){
