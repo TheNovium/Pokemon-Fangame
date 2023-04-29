@@ -78,6 +78,7 @@ public class Window implements Runnable {
         glfwFreeCallbacks(window);
         glfwDestroyWindow(window);
         glfwTerminate();
+        System.exit(1);
     }
 
     public int getWidth(){
